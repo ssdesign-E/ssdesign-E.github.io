@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Алексей Волков — Проектирование электроснабжения</title>
+    <title>Портфолио — Солодянкин Сергей</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -38,6 +38,7 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: var(--light-gray);
         }
 
         h1, h2, h3 {
@@ -85,6 +86,7 @@
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -115,6 +117,14 @@
             width: 100%;
         }
 
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -123,18 +133,15 @@
             color: var(--primary);
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+        /* Page Header */
+        .page-header {
             background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            padding: 140px 2rem 80px;
             position: relative;
             overflow: hidden;
-            padding-top: 80px;
         }
 
-        .hero::before {
+        .page-header::before {
             content: '';
             position: absolute;
             top: 0;
@@ -145,261 +152,138 @@
             opacity: 0.5;
         }
 
-        .hero-container {
+        .page-header-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
             position: relative;
             z-index: 1;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            color: var(--white);
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.875rem;
             margin-bottom: 1.5rem;
-            line-height: 1.1;
         }
 
-        .hero-content h1 span {
+        .breadcrumb a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
             color: var(--accent);
         }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 2rem;
-            font-weight: 300;
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 1rem;
         }
 
-        .hero-stats {
+        .page-header h1 span {
+            color: var(--accent);
+        }
+
+        .page-header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.125rem;
+            max-width: 600px;
+        }
+
+        .stats-bar {
             display: flex;
             gap: 3rem;
-            margin-bottom: 2.5rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        .stat-item {
+        .stats-bar-item {
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
+        .stats-bar-item .number {
+            font-size: 2rem;
             font-weight: 700;
             color: var(--accent);
             display: block;
         }
 
-        .stat-label {
+        .stats-bar-item .label {
             font-size: 0.875rem;
-            color: rgba(255,255,255,0.7);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: rgba(255,255,255,0.6);
         }
 
-        .hero-buttons {
+        /* Filters */
+        .filters-section {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 65px;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
+            align-items: center;
             gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
+        .filter-label {
             font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
+            color: var(--dark);
+            display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
+            margin-right: 0.5rem;
         }
 
-        .btn-primary {
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            border: 1px solid var(--border);
+            background: var(--white);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray);
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-btn.active {
             background: var(--accent);
             color: var(--white);
+            border-color: var(--accent);
         }
 
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(245,158,11,0.3);
+        /* Projects Grid */
+        .projects-section {
+            padding: 3rem 2rem 6rem;
         }
 
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--white);
-            background: rgba(255,255,255,0.1);
-        }
-
-        .hero-visual {
-            position: relative;
-        }
-
-        .hero-image {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .floating-card {
-            position: absolute;
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            z-index: 3;
-        }
-
-        .floating-card-1 {
-            top: -20px;
-            right: -20px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-card-2 {
-            bottom: 40px;
-            left: -30px;
-            animation: float 6s ease-in-out infinite 2s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .floating-card h4 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .floating-card p {
-            font-size: 0.875rem;
-            color: var(--gray);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .container {
+        .projects-container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-tag {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(245,158,11,0.1);
-            color: var(--accent);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            color: var(--gray);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Services */
-        .services {
-            background: var(--light-gray);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(245,158,11,0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--dark);
-        }
-
-        .service-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Projects */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
         }
 
@@ -408,55 +292,78 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--border);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .project-card.hidden {
+            display: none;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
 
         .project-image {
-            height: 240px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 220px;
             position: relative;
             overflow: hidden;
         }
 
-        .project-image::after {
-            content: '';
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-image-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.7) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
         }
 
-        .project-badge {
+        .project-year {
             position: absolute;
             top: 1rem;
             right: 1rem;
             background: var(--accent);
             color: var(--white);
-            padding: 0.5rem 1rem;
+            padding: 0.375rem 1rem;
             border-radius: 50px;
             font-size: 0.875rem;
             font-weight: 600;
             z-index: 2;
         }
 
+        .project-location {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
         .project-content {
-            padding: 2rem;
+            padding: 1.75rem;
         }
 
         .project-content h3 {
             font-size: 1.25rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             color: var(--dark);
         }
 
@@ -471,19 +378,21 @@
         .project-meta span {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.375rem;
         }
 
         .project-description {
             color: var(--gray);
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .tag {
@@ -495,316 +404,120 @@
             font-weight: 500;
         }
 
-        /* Experience */
-        .experience {
-            background: var(--dark);
-            color: var(--white);
-        }
-
-        .experience .section-title {
-            color: var(--white);
-        }
-
-        .experience .section-subtitle {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent), var(--primary-light));
-        }
-
-        .timeline-item {
+        .project-footer {
             display: flex;
-            justify-content: flex-end;
-            padding-right: 50%;
-            position: relative;
-            margin-bottom: 3rem;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
         }
 
-        .timeline-item:nth-child(even) {
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: 50%;
-        }
-
-        .timeline-content {
-            background: var(--dark-light);
-            padding: 2rem;
-            border-radius: 16px;
-            width: 90%;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            content: '';
-            position: absolute;
-            right: -10px;
-            top: 30px;
-            width: 20px;
-            height: 20px;
-            background: var(--dark-light);
-            transform: rotate(45deg);
-            border-right: 1px solid rgba(255,255,255,0.1);
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            content: '';
-            position: absolute;
-            left: -10px;
-            top: 30px;
-            width: 20px;
-            height: 20px;
-            background: var(--dark-light);
-            transform: rotate(45deg);
-            border-left: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 4px solid var(--dark);
-            z-index: 2;
-        }
-
-        .timeline-date {
-            color: var(--accent);
-            font-weight: 600;
+        .project-status {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
             font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content h4 {
-            color: var(--accent);
-            font-size: 1rem;
-            margin-bottom: 1rem;
             font-weight: 500;
         }
 
-        .timeline-content p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .status-completed {
+            color: var(--success);
         }
 
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .status-progress {
+            color: var(--accent);
         }
 
-        .skill-category {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-        }
-
-        .skill-category h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
             display: flex;
             align-items: center;
+            gap: 0.25rem;
+            transition: gap 0.3s;
+        }
+
+        .project-link:hover {
             gap: 0.5rem;
         }
 
-        .skill-item {
-            margin-bottom: 1.25rem;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--light-gray);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 4px;
-            transition: width 1.5s ease;
-            width: 0;
-        }
-
-        /* Certificates */
-        .certificates {
-            background: var(--light-gray);
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .cert-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 16px;
+        /* No Results */
+        .no-results {
             text-align: center;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
+            padding: 4rem 2rem;
+            display: none;
         }
 
-        .cert-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        .no-results.active {
+            display: block;
         }
 
-        .cert-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(245,158,11,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: var(--accent);
-        }
-
-        .cert-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .cert-card p {
+        .no-results i {
             color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Contact */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-info h2 {
-            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .contact-info > p {
+        .no-results h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
             color: var(--gray);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--dark);
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-container h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta-container h2 span {
+            color: var(--accent);
+        }
+
+        .cta-container p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.125rem;
             margin-bottom: 2rem;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(245,158,11,0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-
-        .contact-item h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-            color: var(--dark);
-        }
-
-        .contact-item p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        .contact-form {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark);
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s;
-            background: var(--white);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+        .btn-large {
+            padding: 1.25rem 2.5rem;
+            font-size: 1.1rem;
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: var(--dark-light);
             color: var(--white);
             padding: 3rem 2rem 2rem;
         }
@@ -876,53 +589,16 @@
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content h1 {
+            .page-header h1 {
                 font-size: 2.5rem;
             }
 
-            .hero-stats {
-                justify-content: center;
+            .stats-bar {
+                gap: 2rem;
             }
 
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                display: none;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                padding-left: 60px;
-                padding-right: 0;
-                justify-content: flex-start;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-content::after,
-            .timeline-item:nth-child(even) .timeline-content::after {
-                left: -10px;
-                right: auto;
-                border: none;
-                border-left: 1px solid rgba(255,255,255,0.1);
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
 
@@ -935,65 +611,35 @@
                 display: block;
             }
 
-            .section-title {
+            .page-header {
+                padding: 120px 1.5rem 60px;
+            }
+
+            .page-header h1 {
                 font-size: 2rem;
+            }
+
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .filters-container {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
             }
 
-            .hero-content h1 {
-                font-size: 2rem;
+            .cta-container h2 {
+                font-size: 1.75rem;
             }
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 16px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .modal-content h3 {
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .modal-content p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-close {
-            background: var(--light-gray);
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--dark);
         }
     </style>
 </head>
@@ -1002,14 +648,14 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Электро<span>Проект</span></a>
+            <a href="index.html" class="logo">Sолодянкин<span>Sергей</span></a>
             <ul class="nav-links">
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#projects">Проекты</a></li>
-                <li><a href="#experience">Опыт</a></li>
-                <li><a href="#skills">Навыки</a></li>
-                <li><a href="#certificates">Сертификаты</a></li>
-                <li><a href="#contact">Контакты</a></li>
+                <li><a href="index.html#services">Услуги</a></li>
+                <li><a href="portfolio.html" class="active">Портфолио</a></li>
+                <li><a href="index.html#experience">Опыт</a></li>
+                <li><a href="index.html#skills">Навыки</a></li>
+                <li><a href="index.html#certificates">Сертификаты</a></li>
+                <li><a href="index.html#contact">Контакты</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
                 <i data-lucide="menu" style="width:24px;height:24px;"></i>
@@ -1017,557 +663,403 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Проектирование <span>электроснабжения</span> любой сложности</h1>
-                <p class="hero-subtitle">Разработка проектной документации для жилых, коммерческих и промышленных объектов. Полный цикл от ТЗ до сдачи.</p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">150+</span>
-                        <span class="stat-label">Проектов</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">Лет опыта</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">98%</span>
-                        <span class="stat-label">Успешных сдач</span>
-                    </div>
-                </div>
-
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i data-lucide="mail" style="width:18px;height:18px;"></i>
-                        Обсудить проект
-                    </a>
-                    <a href="#projects" class="btn btn-outline">
-                        <i data-lucide="folder-open" style="width:18px;height:18px;"></i>
-                        Смотреть работы
-                    </a>
-                </div>
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Главная</a>
+                <i data-lucide="chevron-right" style="width:16px;height:16px;"></i>
+                <span>Портфолио</span>
             </div>
-
-            <div class="hero-visual">
-                <div style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%); width:100%; height:500px; border-radius:20px; display:flex; align-items:center; justify-content:center; position:relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3);">
-                    <svg width="300" height="300" viewBox="0 0 300 300" fill="none" style="opacity:0.3;">
-                        <circle cx="150" cy="150" r="120" stroke="white" stroke-width="2" fill="none"/>
-                        <circle cx="150" cy="150" r="80" stroke="white" stroke-width="2" fill="none"/>
-                        <circle cx="150" cy="150" r="40" stroke="white" stroke-width="2" fill="none"/>
-                        <line x1="150" y1="30" x2="150" y2="270" stroke="white" stroke-width="2"/>
-                        <line x1="30" y1="150" x2="270" y2="150" stroke="white" stroke-width="2"/>
-                        <line x1="65" y1="65" x2="235" y2="235" stroke="white" stroke-width="2"/>
-                        <line x1="235" y1="65" x2="65" y2="235" stroke="white" stroke-width="2"/>
-                        <circle cx="150" cy="150" r="8" fill="white"/>
-                        <circle cx="150" cy="70" r="6" fill="white"/>
-                        <circle cx="150" cy="230" r="6" fill="white"/>
-                        <circle cx="70" cy="150" r="6" fill="white"/>
-                        <circle cx="230" cy="150" r="6" fill="white"/>
-                    </svg>
+            <h1>Реализованные <span>проекты</span></h1>
+            <p>Подборка выполненных работ в сфере проектирования электроснабжения. От жилых комплексов до промышленных объектов и альтернативной энергетики.</p>
+            
+            <div class="stats-bar">
+                <div class="stats-bar-item">
+                    <span class="number">150+</span>
+                    <span class="label">Всего проектов</span>
                 </div>
-                
-                <div class="floating-card floating-card-1">
-                    <h4>Точность</h4>
-                    <p>Расчеты с погрешностью < 1%</p>
+                <div class="stats-bar-item">
+                    <span class="number">12</span>
+                    <span class="label">Лет работы</span>
                 </div>
-                
-                <div class="floating-card floating-card-2">
-                    <h4>Сроки</h4>
-                    <p>Среднее время: 14 дней</p>
+                <div class="stats-bar-item">
+                    <span class="number">98%</span>
+                    <span class="label">Успешных сдач</span>
+                </div>
+                <div class="stats-bar-item">
+                    <span class="number">8</span>
+                    <span class="label">Стран</span>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Services -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Услуги</span>
-                <h2 class="section-title">Чем я могу помочь</h2>
-                <p class="section-subtitle">Полный спектр услуг по проектированию электроснабжения и электрических сетей</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i data-lucide="zap" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3>Проектирование ВН и СН</h3>
-                    <p>Разработка схем электроснабжения напряжением 6-10 кВ, проектирование трансформаторных подстанций, распределительных устройств.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i data-lucide="home" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3>Жилые объекты</h3>
-                    <p>Проектирование электроснабжения многоквартирных домов, коттеджных поселков, ЖК бизнес и комфорт-класса.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i data-lucide="building-2" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3>Коммерческая недвижимость</h3>
-                    <p>Торговые центры, офисные здания, склады, логистические комплексы — полный цикл проектирования.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i data-lucide="factory" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3>Промышленные объекты</h3>
-                    <p>Цеха, производственные линии, технологическое оборудование — проектирование силового и осветительного электроснабжения.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i data-lucide="sun" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3>Альтернативная энергетика</h3>
-                    <p>Проектирование солнечных электростанций, систем накопления энергии, интеграция с сетью.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i data-lucide="file-check" style="width:28px;height:28px;"></i>
-                    </div>
-                    <h3>Согласование и экспертиза</h3>
-                    <p>Полное сопровождение проекта: согласование в сетевых организациях, экспертиза, получение ТУ.</p>
-                </div>
-            </div>
+    <!-- Filters -->
+    <div class="filters-section">
+        <div class="filters-container">
+            <span class="filter-label">
+                <i data-lucide="filter" style="width:18px;height:18px;"></i>
+                Фильтр:
+            </span>
+            <button class="filter-btn active" data-filter="all">Все проекты</button>
+            <button class="filter-btn" data-filter="residential">Жилые</button>
+            <button class="filter-btn" data-filter="commercial">Коммерция</button>
+            <button class="filter-btn" data-filter="industrial">Промышленность</button>
+            <button class="filter-btn" data-filter="energy">Энергетика</button>
+            <button class="filter-btn" data-filter="reconstruction">Реконструкция</button>
         </div>
-    </section>
+    </div>
 
     <!-- Projects -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Портфолио</span>
-                <h2 class="section-title">Реализованные проекты</h2>
-                <p class="section-subtitle">Некоторые из выполненных работ за последние годы</p>
-            </div>
+    <section class="projects-section">
+        <div class="projects-container">
+            <div class="projects-grid" id="projectsGrid">
 
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <span class="project-badge">2024</span>
-                        <i data-lucide="building" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
+                <!-- Project 1 -->
+                <article class="project-card fade-in" data-category="residential">
+                    <div class="project-image" style="background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);">
+                        <span class="project-year">2024</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Москва, Россия
+                            </span>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>ЖК «Новые Горизонты»</h3>
                         <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Москва</span>
                             <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 45 000 м²</span>
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
                         </div>
-                        <p class="project-description">Полный комплект проектной документации для 3-секционного жилого комплекта. Внутренние сети 0,4 кВ, освещение, молниезащита.</p>
+                        <p class="project-description">Полный комплект проектной документации для 3-секционного жилого комплекса. Внутренние сети, освещение, молниезащита, слаботочные системы.</p>
                         <div class="project-tags">
                             <span class="tag">Жилой объект</span>
-                            <span class="tag">0,4 кВ</span>
                             <span class="tag">Revit</span>
+                            <span class="tag">BIM</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <span class="project-badge">2023</span>
-                        <i data-lucide="factory" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
+                <!-- Project 2 -->
+                <article class="project-card fade-in" data-category="commercial">
+                    <div class="project-image" style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%);">
+                        <span class="project-year">2024</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Ашхабад, Туркменистан
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Бизнес-центр «Алтын Асыр»</h3>
+                        <div class="project-meta">
+                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 12 000 м²</span>
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 10 кВ</span>
+                        </div>
+                        <p class="project-description">Проектирование электроснабжения офисного центра класса А. Вводная подстанция, системы резервирования, структурированные кабельные сети.</p>
+                        <div class="project-tags">
+                            <span class="tag">Офис</span>
+                            <span class="tag">AutoCAD</span>
+                            <span class="tag">СКС</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-status status-progress">
+                                <i data-lucide="clock" style="width:16px;height:16px;"></i>
+                                В работе
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card fade-in" data-category="industrial">
+                    <div class="project-image" style="background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);">
+                        <span class="project-year">2023</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Ростов-на-Дону, Россия
+                            </span>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Логистический центр «Юг»</h3>
                         <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Ростов-на-Дону</span>
                             <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 28 000 м²</span>
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 10 кВ</span>
                         </div>
-                        <p class="project-description">Проектирование электроснабжения складского комплекса класса А. Вводно-распределительное устройство 10 кВ, аварийное освещение.</p>
+                        <p class="project-description">Складской комплекс класса А. ВРУ 10 кВ, аварийное освещение, системы пожарной безопасности, учёт электроэнергии.</p>
                         <div class="project-tags">
                             <span class="tag">Склад</span>
-                            <span class="tag">10 кВ</span>
                             <span class="tag">ETAP</span>
+                            <span class="tag">АСКУЭ</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <span class="project-badge">2023</span>
-                        <i data-lucide="sun" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
+                <!-- Project 4 -->
+                <article class="project-card fade-in" data-category="energy">
+                    <div class="project-image" style="background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);">
+                        <span class="project-year">2023</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Краснодарский край, Россия
+                            </span>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>СЭС «Солнечная Долина»</h3>
                         <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Краснодарский край</span>
                             <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 5 МВт</span>
+                            <span><i data-lucide="sun" style="width:14px;height:14px;"></i> 12 000 панелей</span>
                         </div>
-                        <p class="project-description">Проектирование наземной солнечной электростанции. Подстанция 10/0,4 кВ, системы мониторинга и защиты.</p>
+                        <p class="project-description">Наземная солнечная электростанция. Подстанция 10/0,4 кВ, инверторные комплексы, системы мониторинга и защиты.</p>
                         <div class="project-tags">
                             <span class="tag">Солнечная ЭС</span>
                             <span class="tag">Альтернатива</span>
                             <span class="tag">AutoCAD</span>
                         </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <span class="project-badge">2022</span>
-                        <i data-lucide="store" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
+                <!-- Project 5 -->
+                <article class="project-card fade-in" data-category="reconstruction">
+                    <div class="project-image" style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%);">
+                        <span class="project-year">2023</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Санкт-Петербург, Россия
+                            </span>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>ТЦ «Галерея Парк»</h3>
                         <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Санкт-Петербург</span>
                             <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 18 000 м²</span>
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
                         </div>
-                        <p class="project-description">Реконструкция электроснабжения торгового центра. Замена ЩО-70, модернизация системы освещения, внедрение АСКУЭ.</p>
+                        <p class="project-description">Реконструкция электроснабжения торгового центра. Замена ЩО-70, модернизация освещения, внедрение АСКУЭ, LED-ретрофит.</p>
                         <div class="project-tags">
                             <span class="tag">Реконструкция</span>
                             <span class="tag">АСКУЭ</span>
                             <span class="tag">Dialux</span>
                         </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                </article>
+
+                <!-- Project 6 -->
+                <article class="project-card fade-in" data-category="industrial">
+                    <div class="project-image" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);">
+                        <span class="project-year">2022</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Ташкент, Узбекистан
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Текстильная фабрика «Узтекстиль»</h3>
+                        <div class="project-meta">
+                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 35 000 м²</span>
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 10 кВ</span>
+                        </div>
+                        <p class="project-description">Полный цикл проектирования для текстильного производства. Силовое электроснабжение, освещение цехов, заземление, молниезащита.</p>
+                        <div class="project-tags">
+                            <span class="tag">Промышленность</span>
+                            <span class="tag">ETAP</span>
+                            <span class="tag">Расчет КЗ</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 7 -->
+                <article class="project-card fade-in" data-category="residential">
+                    <div class="project-image" style="background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);">
+                        <span class="project-year">2022</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Ашхабад, Туркменистан
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Коттеджный поселок «Багтыярлык»</h3>
+                        <div class="project-meta">
+                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 120 домов</span>
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
+                        </div>
+                        <p class="project-description">Проектирование наружных сетей и индивидуальных домов премиум-класса. Кабельные линии, трансформаторная подстанция, освещение территории.</p>
+                        <div class="project-tags">
+                            <span class="tag">Коттеджи</span>
+                            <span class="tag">Наружные сети</span>
+                            <span class="tag">AutoCAD</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 8 -->
+                <article class="project-card fade-in" data-category="commercial">
+                    <div class="project-image" style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%);">
+                        <span class="project-year">2021</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Алматы, Казахстан
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Гипермаркет «Магнум»</h3>
+                        <div class="project-meta">
+                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 8 500 м²</span>
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
+                        </div>
+                        <p class="project-description">Электроснабжение торгового гипермаркета. Холодильное оборудование, кассовые зоны, освещение торгового зала, системы безопасности.</p>
+                        <div class="project-tags">
+                            <span class="tag">Торговля</span>
+                            <span class="tag">Revit</span>
+                            <span class="tag">Освещение</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 9 -->
+                <article class="project-card fade-in" data-category="energy">
+                    <div class="project-image" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                        <span class="project-year">2021</span>
+                        <div class="project-image-overlay">
+                            <span class="project-location">
+                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
+                                Бухара, Узбекистан
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Ветровая установка 2 МВт</h3>
+                        <div class="project-meta">
+                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 2 МВт</span>
+                            <span><i data-lucide="wind" style="width:14px;height:14px;"></i> 4 турбины</span>
+                        </div>
+                        <p class="project-description">Проектирование подключения ветровой электростанции к сети 10 кВ. Подстанция, линии электропередачи, системы защиты и автоматики.</p>
+                        <div class="project-tags">
+                            <span class="tag">Ветроэнергетика</span>
+                            <span class="tag">10 кВ</span>
+                            <span class="tag">АСУ ТП</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-status status-completed">
+                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+                                Завершен
+                            </span>
+                            <a href="#" class="project-link">
+                                Подробнее
+                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults">
+                <i data-lucide="search-x" style="width:48px;height:48px;"></i>
+                <h3>Проекты не найдены</h3>
+                <p>Попробуйте выбрать другую категорию фильтра</p>
             </div>
         </div>
     </section>
 
-    <!-- Experience -->
-    <section class="experience" id="experience">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag" style="background:rgba(245,158,11,0.2);">Опыт</span>
-                <h2 class="section-title">Профессиональный путь</h2>
-                <p class="section-subtitle">Карьера в сфере электротехнического проектирования</p>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2021 — настоящее время</div>
-                        <h3>Ведущий инженер-проектировщик</h3>
-                        <h4>ООО «ЭлектроПроект-М»</h4>
-                        <p>Руководство группой из 5 проектировщиков. Разработка проектной документации для объектов жилого, коммерческого и промышленного назначения. Согласование в сетевых и надзорных органах.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2017 — 2021</div>
-                        <h3>Инженер-проектировщик II категории</h3>
-                        <h4>АО «Мосэнергопроект»</h4>
-                        <p>Проектирование внутренних электрических сетей жилых и общественных зданий. Разработка однолинейных схем, планов расположения оборудования, спецификаций.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2014 — 2017</div>
-                        <h3>Инженер-конструктор</h3>
-                        <h4>ООО «ПроектЭнерго»</h4>
-                        <p>Выполнение разделов ЭО, ЭМ, ЭС. Работа в AutoCAD, разработка принципиальных и монтажных схем. Согласование проектов в Ростехнадзоре.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2012 — 2014</div>
-                        <h3>Инженер-электрик</h3>
-                        <h4>ОАО «СтройЭлектроМонтаж»</h4>
-                        <p>Начало карьеры. Работа на стройплощадке, изучение реального монтажа электрооборудования. Понимание технологий исполнения с последующим переходом в проектирование.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Компетенции</span>
-                <h2 class="section-title">Навыки и технологии</h2>
-                <p class="section-subtitle">Профессиональные инструменты и области экспертизы</p>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category fade-in">
-                    <h3><i data-lucide="monitor" style="width:20px;height:20px;color:var(--accent);"></i> Программное обеспечение</h3>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>AutoCAD</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Revit / BIM</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>ETAP / DiaLUX</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Compass / nanoCAD</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category fade-in">
-                    <h3><i data-lucide="book-open" style="width:20px;height:20px;color:var(--accent);"></i> Нормативная база</h3>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>ПУЭ / ПТЭЭП</span>
-                            <span>98%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="98"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>СП 256, СП 31, СП 76</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>ГОСТ Р 50571</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>ФЗ-261 (энергосбережение)</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="88"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category fade-in">
-                    <h3><i data-lucide="cpu" style="width:20px;height:20px;color:var(--accent);"></i> Технические навыки</h3>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Расчет КЗ и селективности</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="92"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Проектирование АСКУЭ</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Молниезащита и заземление</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <span>Слаботочные системы</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certificates -->
-    <section class="certificates" id="certificates">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Образование</span>
-                <h2 class="section-title">Сертификаты и дипломы</h2>
-                <p class="section-subtitle">Подтверждение квалификации и постоянное развитие</p>
-            </div>
-
-            <div class="cert-grid">
-                <div class="cert-card fade-in">
-                    <div class="cert-icon">
-                        <i data-lucide="graduation-cap" style="width:32px;height:32px;"></i>
-                    </div>
-                    <h3>Высшее образование</h3>
-                    <p>МГТУ им. Баумана<br>«Электроснабжение»<br>2008 — 2013</p>
-                </div>
-
-                <div class="cert-card fade-in">
-                    <div class="cert-icon">
-                        <i data-lucide="shield-check" style="width:32px;height:32px;"></i>
-                    </div>
-                    <h3>Группа допуска III</h3>
-                    <p>До 1000 В<br>Действующий<br>Пересдача: 2024</p>
-                </div>
-
-                <div class="cert-card fade-in">
-                    <div class="cert-icon">
-                        <i data-lucide="award" style="width:32px;height:32px;"></i>
-                    </div>
-                    <h3>Аттестат проектировщика</h3>
-                    <p>№ П-04512<br>Категория сложности: II<br>Область: электроснабжение</p>
-                </div>
-
-                <div class="cert-card fade-in">
-                    <div class="cert-icon">
-                        <i data-lucide="leaf" style="width:32px;height:32px;"></i>
-                    </div>
-                    <h3>Энергоаудитор</h3>
-                    <p>Свидетельство о повышении квалификации<br>Минэнерго РФ, 2022</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Контакты</span>
-                <h2 class="section-title">Давайте работать вместе</h2>
-                <p class="section-subtitle">Готов обсудить ваш проект и ответить на вопросы</p>
-            </div>
-
-            <div class="contact-container">
-                <div class="contact-info fade-in">
-                    <h2>Свяжитесь со мной</h2>
-                    <p>Заполните форму или используйте контактные данные. Обычно отвечаю в течение рабочего дня.</p>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i data-lucide="phone" style="width:22px;height:22px;"></i>
-                        </div>
-                        <div>
-                            <h4>Телефон</h4>
-                            <p>+7 (999) 123-45-67</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i data-lucide="mail" style="width:22px;height:22px;"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@electroproject.ru</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i data-lucide="map-pin" style="width:22px;height:22px;"></i>
-                        </div>
-                        <div>
-                            <h4>Локация</h4>
-                            <p>Москва, работа по всей России</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i data-lucide="clock" style="width:22px;height:22px;"></i>
-                        </div>
-                        <div>
-                            <h4>График работы</h4>
-                            <p>Пн-Пт: 9:00 — 18:00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" placeholder="Иван Иванов" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="example@mail.ru" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="type">Тип объекта</label>
-                        <select id="type" required>
-                            <option value="">Выберите тип</option>
-                            <option value="residential">Жилой объект</option>
-                            <option value="commercial">Коммерческий объект</option>
-                            <option value="industrial">Промышленный объект</option>
-                            <option value="reconstruction">Реконструкция</option>
-                            <option value="other">Другое</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Описание проекта</label>
-                        <textarea id="message" placeholder="Кратко опишите задачу, площадь, сроки..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
-                        <i data-lucide="send" style="width:18px;height:18px;"></i>
-                        Отправить заявку
-                    </button>
-                </form>
-            </div>
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Есть похожий <span>проект</span>?</h2>
+            <p>Расскажите о вашей задаче — подготовлю коммерческое предложение и сроки выполнения.</p>
+            <a href="index.html#contact" class="btn btn-primary btn-large">
+                <i data-lucide="mail" style="width:20px;height:20px;"></i>
+                Обсудить проект
+            </a>
         </div>
     </section>
 
@@ -1575,28 +1067,18 @@
     <footer>
         <div class="footer-container">
             <div class="footer-top">
-                <div class="footer-logo">Электро<span>Проект</span></div>
+                <div class="footer-logo">Sолодянкин<span>Sергей</span></div>
                 <div class="social-links">
-                    <a href="#" aria-label="Telegram"><i data-lucide="send" style="width:18px;height:18px;"></i></a>
+                    <a href="#" aria-label="Telegram @LordEnergy"><i data-lucide="send" style="width:18px;height:18px;"></i></a>
                     <a href="#" aria-label="WhatsApp"><i data-lucide="message-circle" style="width:18px;height:18px;"></i></a>
-                    <a href="#" aria-label="Email"><i data-lucide="mail" style="width:18px;height:18px;"></i></a>
+                    <a href="mailto:sselektrodesign@gmail.com" aria-label="Email"><i data-lucide="mail" style="width:18px;height:18px;"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 ЭлектроПроект. Все права защищены. Проектирование электроснабжения.</p>
+                <p>© 2026 SS инжиниринг. Все права защищены. Проектирование электроснабжения.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <i data-lucide="check-circle" style="width:48px;height:48px;color:var(--success);margin-bottom:1rem;"></i>
-            <h3>Заявка отправлена!</h3>
-            <p>Спасибо за обращение. Я свяжусь с вами в ближайшее время для обсуждения деталей проекта.</p>
-            <button class="modal-close" onclick="closeModal()">Закрыть</button>
-        </div>
-    </div>
 
     <script>
         // Initialize Lucide icons
@@ -1612,7 +1094,7 @@
             }
         });
 
-        // Fade in animation on scroll
+        // Fade in animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1622,13 +1104,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    
-                    // Animate skill bars
-                    const progressBars = entry.target.querySelectorAll('.skill-progress');
-                    progressBars.forEach(bar => {
-                        const width = bar.getAttribute('data-width');
-                        bar.style.width = width + '%';
-                    });
                 }
             });
         }, observerOptions);
@@ -1637,18 +1112,43 @@
             observer.observe(el);
         });
 
-        // Form handling
-        function handleSubmit(e) {
-            e.preventDefault();
-            document.getElementById('modal').classList.add('active');
-            e.target.reset();
-        }
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const noResults = document.getElementById('noResults');
 
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
-        }
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-        // Mobile menu toggle
+                const filter = btn.getAttribute('data-filter');
+                let visibleCount = 0;
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.classList.remove('hidden');
+                        // Add staggered animation
+                        card.style.animation = 'none';
+                        card.offsetHeight; // Trigger reflow
+                        card.style.animation = 'fadeInUp 0.5s ease forwards';
+                        visibleCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Show/hide no results message
+                if (visibleCount === 0) {
+                    noResults.classList.add('active');
+                } else {
+                    noResults.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile menu
         function toggleMobileMenu() {
             const nav = document.querySelector('.nav-links');
             nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
@@ -1663,26 +1163,21 @@
             nav.style.gap = '1rem';
         }
 
-        // Close modal on outside click
-        document.getElementById('modal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('modal')) {
-                closeModal();
-            }
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Add fadeInUp keyframe
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
                 }
-            });
-        });
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
