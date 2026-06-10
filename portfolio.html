@@ -60,7 +60,7 @@
         .status-done { background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3); }
         .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
         
-        .card-body { padding: 24px; display: flex; flex-direction: flex-column; flex-grow: 1; }
+        .card-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
         .card-body h3 { font-size: 19px; font-weight: 600; color: var(--dark); margin-bottom: 8px; line-height: 1.4; }
         .card-meta { display: flex; align-items: center; gap: 16px; color: var(--gray); font-size: 13px; margin-bottom: 16px; }
         .card-meta span { display: inline-flex; align-items: center; gap: 4px; }
@@ -87,8 +87,14 @@
         
         /* Gallery Left Side */
         .modal-gallery-side { background: #f8fafc; padding: 32px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--border); }
-        .modal-main-hero { height: 340px; border-radius: 16px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #cbd5e1; }
-        .modal-main-hero img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease; }
+        
+        /* Кнопка "Увеличить" и контейнер */
+        .modal-main-hero { height: 340px; border-radius: 16px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #cbd5e1; cursor: zoom-in; }
+        .modal-main-hero img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease, transform 0.3s ease; }
+        .modal-main-hero:hover img { transform: scale(1.02); }
+        
+        .zoom-overlay-hint { position: absolute; bottom: 16px; right: 16px; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); color: var(--white); padding: 6px 12px; border-radius: 20px; font-size: 12px; display: flex; align-items: center; gap: 6px; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; }
+        .modal-main-hero:hover .zoom-overlay-hint { opacity: 1; }
         
         .modal-thumbs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; margin-top: auto; }
         .modal-thumb { height: 60px; border-radius: 8px; cursor: pointer; overflow: hidden; border: 2px solid transparent; transition: all 0.2s ease; background: #e2e8f0; }
@@ -117,6 +123,18 @@
         .modal-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: var(--white); padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(30,58,95,0.15); }
         .modal-cta-btn:hover { background: var(--primary-light); transform: translateY(-1px); box-shadow: 0 6px 12px rgba(30,58,95,0.2); }
 
+        /* ПОЛНОЭКРАННЫЙ LIGHTBOX ДЛЯ ДЕТАЛЬНОГО ПРОСМОТРА ЧЕРТЕЖЕЙ */
+        .lightbox-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .lightbox-backdrop.active { opacity: 1; pointer-events: auto; }
+        
+        .lightbox-container { max-width: 95vw; max-height: 90vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 12px; }
+        .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; transform: scale(0.95); transition: transform 0.3s ease; cursor: grab; }
+        .lightbox-backdrop.active .lightbox-image { transform: scale(1); }
+        .lightbox-image:active { cursor: grabbing; }
+        
+        .lightbox-close { position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); cursor: pointer; transition: all 0.2s ease; }
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
+
         /* Responsive Windows */
         @media (max-width: 900px) {
             .modal-grid { grid-template-columns: 1fr; }
@@ -125,7 +143,7 @@
             .modal-content-side { padding: 24px; }
             .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         }
-        @media (max-width: 48px) {
+        @media (max-width: 480px) {
             header h1 { font-size: 32px; }
             .filter-buttons { gap: 8px; }
             .filter-btn { padding: 8px 16px; font-size: 13px; }
@@ -167,13 +185,20 @@
             <button class="modal-close" onclick="closeModal()">
                 <i data-lucide="x" style="width: 20px; height: 20px;"></i>
             </button>
-            <div class="modal-grid" id="modalDynamicContent">
-                </div>
+            <div class="modal-grid" id="modalDynamicContent"></div>
+        </div>
+    </div>
+
+    <div class="lightbox-backdrop" id="lightboxModal" onclick="closeLightbox()">
+        <button class="lightbox-close">
+            <i data-lucide="x" style="width: 24px; height: 24px;"></i>
+        </button>
+        <div class="lightbox-container" onclick="e.stopPropagation()">
+            <img class="lightbox-image" id="lightboxImg" src="" alt="Детальный просмотр чертежа">
         </div>
     </div>
 
     <script>
-        // БАЗА ДАННЫХ ВАШИХ РЕАЛЬНЫХ ПРОЕКТОВ С ПУТЯМИ К КАРТИНКАМ НА GITHUB
         const projects = {
             p1: {
                 title: 'Торгово-сервисный комплекс (2-я очередь)',
@@ -373,7 +398,7 @@
                     { label: 'Главный ввод', value: 'Реконструкция ГРЩ' },
                     { label: 'Подсветка', value: 'Архитектурный фасад' }
                 ],
-                description: 'Проект полной модернизации распределительных сетей и создания современной концепции спортивного и архитектурно-художественного освещения фасадов спортивного комплекса национальной туристической зоны.',
+                description: 'Проект полной модернизации распределительных сетей и создания современной концепции спортического и архитектурно-художественного освещения фасадов спортивного комплекса национальной туристической зоны.',
                 tasks: ['Полный электроаудит мощностей и замена вводных панелей ГРЩ', 'Проектирование динамической управляемой LED-подсветки фасада здания', 'Интеграция систем управления световыми сценариями по протоколу DALI'],
                 tags: ['Реконструкция', 'Аваза', 'Спорткомплекс', 'Фасадный свет']
             },
@@ -439,7 +464,7 @@
                     { label: 'Текущий этап', value: '1-я очередь (Переработка)' },
                     { label: 'Раздел проекта', value: 'ЭМ, ЭО, Молниезащита' }
                 ],
-                description: 'Электротехническое проектирование первой очереди крупного спиртового промышленного комплекса — цеха по переработке барды (отходов основного производства) в высококачественные сухие корма. Реализована защита оборудования.',
+                description: 'Электротехническое проектирование первой очереди крупного спиртового промышленного комплекса — цеха по переработке барды (отходов основного производства) в высококачественные сухие корма. Реализована комплексная защита оборудования.',
                 tasks: ['Проектирование силового электрооборудования автоматических конвейерных линий', 'Расчет системы заземления и молниезащиты производственного здания цеха', 'Подбор пускорегулирующей аппаратуры защиты электродвигателей от перегрузок'],
                 tags: ['Промышленность', 'Пищевое производство', 'Ак бугдай', 'Молниезащита']
             },
@@ -461,7 +486,7 @@
                     { label: 'Заказчик', value: 'ХО Д. Деряева' },
                     { label: 'Сети распределения', value: 'КЛ-0,4 кВ наружные' }
                 ],
-                description: 'Комплексный электропроект строительства крупной промышленно-производственной базы со складскими терминалами высокого хранения. Организовано надежное деление мощностей между объектами.',
+                description: 'Разработка комплексной схемы внешнего и внутреннего электроснабжения логистического центра и складов высокого хранения. Организовано надежное деление мощностей между объектами.',
                 tasks: ['Проектирование распределительных наружных сетей 0,4 кВ между складами', 'Расчет внутреннего освещения складов светодиодными светильниками типа "High Bay"', 'Проектирование силовых линий систем промышленной вентиляции и кондиционирования'],
                 tags: ['Логистика', 'Склады', 'Наружные сети', 'Промышленность']
             },
@@ -484,7 +509,7 @@
                     { label: 'Резервуары', value: 'Объем 40 000 м³' },
                     { label: 'Назначение', value: 'Ирригационные системы' }
                 ],
-                description: 'Высокотехнологичный промышленный проект электроснабжения и комплексной автоматизации гидротехнических сооружений: водозаборного узла, отстойных дноуглубительных бассейнов оросительной сети и станций перекачки воды.',
+                description: 'Высокотехнологичный промышленный проект электроснабжения и комплексной автоматизации гидротехнических сооружений: водозаборногольного узла, отстойных дноуглубительных бассейнов оросительной сети и станций перекачки воды.',
                 tasks: ['Проектирование силового электрооборудования мощных высоковольтных насосов', 'Внедрение преобразователей частоты (ЧРП) для плавного пуска и экономии ресурсов', 'Разработка систем автоматики контроля уровней воды и защиты оборудования от сухого хода'],
                 tags: ['Гидротехника', 'Насосные станции', 'Автоматизация', 'АСУ ТП']
             },
@@ -519,7 +544,6 @@
             const grid = document.getElementById('projectsGrid');
             const noResults = document.getElementById('noResults');
             
-            // Удаляем старые карточки, оставляя только блок No Results
             const cards = grid.querySelectorAll('.project-card');
             cards.forEach(card => card.remove());
 
@@ -566,7 +590,6 @@
             lucide.createIcons();
         }
 
-        // ОБНОВЛЕННАЯ ФУНКЦИЯ ДИНАМИЧЕСКОЙ СБОРКИ МОДАЛЬНОГО ОКНА С 4-6 ФОТОГРАФИЯМИ
         window.openModal = function(id) {
             const project = projects[id];
             if (!project) return;
@@ -576,11 +599,13 @@
 
             const dynamicContainer = document.getElementById('modalDynamicContent');
             
-            // Генерируем HTML-разметку для внутренних окон модалки
             dynamicContainer.innerHTML = `
                 <div class="modal-gallery-side">
-                    <div class="modal-main-hero" id="modalMainHeroBox">
+                    <div class="modal-main-hero" id="modalMainHeroBox" onclick="openLightbox()">
                         <img id="modalMainImage" src="${currentProjectImages[0]}" alt="${project.title}" onerror="showMainFallback('${project.specs[0].value}')">
+                        <div class="zoom-overlay-hint">
+                            <i data-lucide="zoom-in" style="width:14px;height:14px;"></i> Увеличить чертеж
+                        </div>
                     </div>
                     <div class="modal-thumbs-grid">
                         ${currentProjectImages.map((imgUrl, idx) => `
@@ -646,7 +671,6 @@
             lucide.createIcons();
         };
 
-        // Логика клика по миниатюрам внутри модалки
         window.selectModalThumb = function(el, idx, fallbackText) {
             document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
@@ -661,18 +685,41 @@
             }, 150);
         };
 
-        // Заглушка, если основная картинка еще не добавлена в репозиторийassets/projects/
         window.showMainFallback = function(text) {
             const mainImg = document.getElementById('modalMainImage');
-            mainImg.src = `data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 440 340%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%231e3a5f%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2216%22>${text} (Фото ${currentThumb + 1})</text></svg>`;
+            mainImg.src = `data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 440 340%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%231e3a5f%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2214%22>${text} (Фото ${currentThumb + 1})</text></svg>`;
         };
 
         window.closeModal = function() {
             document.getElementById('projectModal').classList.remove('active');
-            document.body.style.overflow = '';
+            if(!document.getElementById('lightboxModal').classList.contains('active')) {
+                document.body.style.overflow = '';
+            }
         };
 
-        // Инициализация фильтров при загрузке страницы
+        /* ЛОГИКА ФУНКЦИОНИРОВАНИЯ LIGHTBOX (УВЕЛИЧЕНИЯ КАРТИНКИ) */
+        window.openLightbox = function() {
+            const currentImgSrc = currentProjectImages[currentThumb];
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImg = document.getElementById('lightboxImg');
+            
+            lightboxImg.src = currentImgSrc;
+            lightboxModal.classList.add('active');
+            
+            // Если картинки физически еще нет, генерируем SVG заглушку на весь экран
+            lightboxImg.onerror = function() {
+                lightboxImg.src = `data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230f172a%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2364748b%22 font-family=%22sans-serif%22 font-size=%2220%22>Чертеж / Схема на заполнении (Фото ${currentThumb + 1})</text></svg>`;
+            };
+        };
+
+        window.closeLightbox = function() {
+            document.getElementById('lightboxModal').classList.remove('active');
+            // Если основная модалка все еще открыта, сохраняем блокировку прокрутки
+            if (!document.getElementById('projectModal').classList.contains('active')) {
+                document.body.style.overflow = '';
+            }
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             renderProjects();
 
@@ -686,14 +733,18 @@
             });
         });
 
-        // Закрытие модального окна по клику на фон
         document.getElementById('projectModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // Закрытие модального окна по кнопке Escape
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') {
+                if(document.getElementById('lightboxModal').classList.contains('active')) {
+                    closeLightbox();
+                } else {
+                    closeModal();
+                }
+            }
         });
     </script>
 </body>
