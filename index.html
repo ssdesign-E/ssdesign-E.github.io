@@ -3,11 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио — Солодянкин Сергей</title>
+    <title>Солодянкин Сергей — Проектирование электроснабжения | Ашхабад</title>
+    <meta name="description" content="Профессиональное проектирование электроснабжения жилых, коммерческих и промышленных объектов. 12 лет опыта, 150+ проектов. Ашхабад и весь мир.">
+    <meta name="keywords" content="проектирование электроснабжения, электропроект, проект электрики, электропроектировщик, Ашхабад, Туркменистан">
+    <meta name="author" content="Солодянкин Сергей">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="TM">
+    <meta name="geo.placename" content="Ашхабад">
+    <meta name="geo.position" content="37.9601;58.3261">
+    <meta name="ICBM" content="37.9601, 58.3261">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sselektrodesign.com/">
+    
+    <!-- Open Graph -->
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="Солодянкин Сергей — Проектирование электроснабжения">
+    <meta property="og:description" content="150+ реализованных проектов электроснабжения. Жилые, коммерческие, промышленные объекты.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sselektrodesign.com/">
+    <meta property="og:image" content="https://sselektrodesign.com/images/preview.jpg">
+    <meta property="og:site_name" content="SS Инжиниринг">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Солодянкин Сергей — Проектирование электроснабжения">
+    <meta name="twitter:description" content="150+ реализованных проектов. 12 лет опыта.">
+    <meta name="twitter:image" content="https://sselektrodesign.com/images/preview.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" as="style">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Солодянкин Сергей — Проектирование электроснабжения",
+      "description": "Профессиональное проектирование электроснабжения любой сложности. Жилые, коммерческие и промышленные объекты.",
+      "url": "https://sselektrodesign.com",
+      "telephone": "+993-61-24-72-57",
+      "email": "sselektrodesign@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ашхабад",
+        "addressCountry": "TM"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "37.9601",
+        "longitude": "58.3261"
+      },
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "priceRange": "$$",
+      "image": "https://sselektrodesign.com/images/logo.jpg",
+      "founder": {
+        "@type": "Person",
+        "name": "Солодянкин Сергей"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Ашхабад, Туркменистан, СНГ, международные проекты"
+      }
+    }
+    </script>
+    
     <style>
         :root {
             --primary: #1e3a5f;
@@ -27,6 +98,19 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: var(--white);
+            padding: 8px 16px;
+            z-index: 10000;
+            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
 
         /* Navigation */
         nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); transition: all 0.3s ease; }
@@ -123,7 +207,8 @@
         .timeline-date { color: var(--accent); font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; }
         .timeline-content h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
         .timeline-content h4 { color: var(--accent); font-size: 1rem; margin-bottom: 1rem; font-weight: 500; }
-        .timeline-content p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.6; }
+        .timeline-content ul { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.6; padding-left: 1.2rem; }
+        .timeline-content ul li { margin-bottom: 0.5rem; }
 
         /* Skills */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
@@ -151,6 +236,8 @@
         .contact-icon { width: 50px; height: 50px; background: rgba(245,158,11,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
         .contact-item h4 { font-size: 1rem; margin-bottom: 0.25rem; color: var(--dark); }
         .contact-item p { color: var(--gray); font-size: 0.95rem; }
+        .contact-item a { color: var(--gray); text-decoration: none; transition: color 0.3s; }
+        .contact-item a:hover { color: var(--accent); }
         .contact-form { background: var(--white); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark); font-size: 0.9rem; }
@@ -207,8 +294,11 @@
 </head>
 <body>
 
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Перейти к основному содержанию</a>
+
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav id="navbar" role="navigation" aria-label="Главное меню">
         <div class="nav-container">
             <a href="index.html" class="logo">Sолодянкин<span>Sергей</span></a>
             <ul class="nav-links">
@@ -219,478 +309,493 @@
                 <li><a href="#certificates">Сертификаты</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Открыть меню">
                 <i data-lucide="menu" style="width:24px;height:24px;"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-container">
-            <div class="hero-content">
-                <h1>Проектирование <span>электроснабжения</span> любой сложности</h1>
-                <p class="hero-subtitle">Разработка проектной документации для жилых, коммерческих и промышленных объектов. Полный цикл от ТЗ до сдачи.</p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">150+</span>
-                        <span class="stat-label">Проектов</span>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Проектирование <span>электроснабжения</span> любой сложности</h1>
+                    <p class="hero-subtitle">Разработка проектной документации для жилых, коммерческих и промышленных объектов. Полный цикл от ТЗ до сдачи.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Проектов</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Лет опыта</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Успешных сдач</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">12</span>
-                        <span class="stat-label">Лет опыта</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">98%</span>
-                        <span class="stat-label">Успешных сдач</span>
+
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i data-lucide="mail" style="width:18px;height:18px;"></i>
+                            Обсудить проект
+                        </a>
+                        <a href="portfolio.html" class="btn btn-outline">
+                            <i data-lucide="folder-open" style="width:18px;height:18px;"></i>
+                            Все проекты
+                        </a>
                     </div>
                 </div>
 
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i data-lucide="mail" style="width:18px;height:18px;"></i>
-                        Обсудить проект
+                <div class="hero-visual">
+                    <div style="background: linear-gradient(135deg, rgba(44, 82, 130, 0.6) 0%, rgba(30, 58, 95, 0.6) 100%); width:100%; height:500px; border-radius:20px; display:flex; align-items:center; justify-content:center; position:relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
+                        <svg width="300" height="300" viewBox="0 0 300 300" fill="none" style="opacity:0.4;" aria-hidden="true">
+                            <circle cx="150" cy="150" r="120" stroke="white" stroke-width="2" fill="none"/>
+                            <circle cx="150" cy="150" r="80" stroke="white" stroke-width="2" fill="none"/>
+                            <circle cx="150" cy="150" r="40" stroke="white" stroke-width="2" fill="none"/>
+                            <line x1="150" y1="30" x2="150" y2="270" stroke="white" stroke-width="2"/>
+                            <line x1="30" y1="150" x2="270" y2="150" stroke="white" stroke-width="2"/>
+                            <line x1="65" y1="65" x2="235" y2="235" stroke="white" stroke-width="2"/>
+                            <line x1="235" y1="65" x2="65" y2="235" stroke="white" stroke-width="2"/>
+                            <circle cx="150" cy="150" r="8" fill="white"/>
+                            <circle cx="150" cy="70" r="6" fill="white"/>
+                            <circle cx="150" cy="230" r="6" fill="white"/>
+                            <circle cx="70" cy="150" r="6" fill="white"/>
+                            <circle cx="230" cy="150" r="6" fill="white"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="floating-card floating-card-1">
+                        <h4>Точность</h4>
+                        <p>Расчеты с погрешностью < 1%</p>
+                    </div>
+                    
+                    <div class="floating-card floating-card-2">
+                        <h4>Сроки</h4>
+                        <p>Среднее время: 14 дней</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">Услуги</span>
+                    <h2 class="section-title">Чем я могу помочь</h2>
+                    <p class="section-subtitle">Полный спектр услуг по проектированию электроснабжения и электрических сетей</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i data-lucide="zap" style="width:28px;height:28px;"></i></div>
+                        <h3>Проектирование ВН и СН</h3>
+                        <p>Разработка схем электроснабжения напряжением 6-10 кВ, проектирование трансформаторных подстанций, распределительных устройств.</p>
+                    </article>
+
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i data-lucide="home" style="width:28px;height:28px;"></i></div>
+                        <h3>Жилые объекты</h3>
+                        <p>Проектирование электроснабжения многоквартирных домов, коттеджных поселков, ЖК бизнес и комфорт-класса.</p>
+                    </article>
+
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i data-lucide="building-2" style="width:28px;height:28px;"></i></div>
+                        <h3>Коммерческая недвижимость</h3>
+                        <p>Торговые центры, офисные здания, склады, логистические комплексы — полный цикл проектирования.</p>
+                    </article>
+
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i data-lucide="factory" style="width:28px;height:28px;"></i></div>
+                        <h3>Промышленные объекты</h3>
+                        <p>Цеха, производственные линии, технологическое оборудование — проектирование силового и осветительного электроснабжения.</p>
+                    </article>
+
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i data-lucide="sun" style="width:28px;height:28px;"></i></div>
+                        <h3>Альтернативная энергетика</h3>
+                        <p>Проектирование солнечных электростанций, систем накопления энергии, интеграция с сетью.</p>
+                    </article>
+
+                    <article class="service-card fade-in">
+                        <div class="service-icon"><i data-lucide="file-check" style="width:28px;height:28px;"></i></div>
+                        <h3>Согласование и экспертиза</h3>
+                        <p>Полное сопровождение проекта: согласование в сетевых организациях, экспертиза, получение ТУ.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects (3 best on homepage) -->
+        <section class="featured-projects" id="featured">
+            <div class="container">
+                <div class="featured-header fade-in">
+                    <div class="section-header">
+                        <span class="section-tag">Избранное</span>
+                        <h2 class="section-title">Лучшие проекты</h2>
+                        <p class="section-subtitle">Три ключевых объекта из портфолио</p>
+                    </div>
+                    <a href="portfolio.html" class="btn btn-dark view-all-btn">
+                        <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+                        Смотреть все портфолио
                     </a>
-                    <a href="portfolio.html" class="btn btn-outline">
-                        <i data-lucide="folder-open" style="width:18px;height:18px;"></i>
-                        Все проекты
-                    </a>
-                </div>
-            </div>
-
-            <div class="hero-visual">
-                <div style="background: linear-gradient(135deg, rgba(44, 82, 130, 0.6) 0%, rgba(30, 58, 95, 0.6) 100%); width:100%; height:500px; border-radius:20px; display:flex; align-items:center; justify-content:center; position:relative; box-shadow: 0 25px 50px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);">
-                    <svg width="300" height="300" viewBox="0 0 300 300" fill="none" style="opacity:0.4;">
-                        <circle cx="150" cy="150" r="120" stroke="white" stroke-width="2" fill="none"/>
-                        <circle cx="150" cy="150" r="80" stroke="white" stroke-width="2" fill="none"/>
-                        <circle cx="150" cy="150" r="40" stroke="white" stroke-width="2" fill="none"/>
-                        <line x1="150" y1="30" x2="150" y2="270" stroke="white" stroke-width="2"/>
-                        <line x1="30" y1="150" x2="270" y2="150" stroke="white" stroke-width="2"/>
-                        <line x1="65" y1="65" x2="235" y2="235" stroke="white" stroke-width="2"/>
-                        <line x1="235" y1="65" x2="65" y2="235" stroke="white" stroke-width="2"/>
-                        <circle cx="150" cy="150" r="8" fill="white"/>
-                        <circle cx="150" cy="70" r="6" fill="white"/>
-                        <circle cx="150" cy="230" r="6" fill="white"/>
-                        <circle cx="70" cy="150" r="6" fill="white"/>
-                        <circle cx="230" cy="150" r="6" fill="white"/>
-                    </svg>
-                </div>
-                
-                <div class="floating-card floating-card-1">
-                    <h4>Точность</h4>
-                    <p>Расчеты с погрешностью < 1%</p>
-                </div>
-                
-                <div class="floating-card floating-card-2">
-                    <h4>Сроки</h4>
-                    <p>Среднее время: 14 дней</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Услуги</span>
-                <h2 class="section-title">Чем я могу помочь</h2>
-                <p class="section-subtitle">Полный спектр услуг по проектированию электроснабжения и электрических сетей</p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon"><i data-lucide="zap" style="width:28px;height:28px;"></i></div>
-                    <h3>Проектирование ВН и СН</h3>
-                    <p>Разработка схем электроснабжения напряжением 6-10 кВ, проектирование трансформаторных подстанций, распределительных устройств.</p>
                 </div>
 
-                <div class="service-card fade-in">
-                    <div class="service-icon"><i data-lucide="home" style="width:28px;height:28px;"></i></div>
-                    <h3>Жилые объекты</h3>
-                    <p>Проектирование электроснабжения многоквартирных домов, коттеджных поселков, ЖК бизнес и комфорт-класса.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon"><i data-lucide="building-2" style="width:28px;height:28px;"></i></div>
-                    <h3>Коммерческая недвижимость</h3>
-                    <p>Торговые центры, офисные здания, склады, логистические комплексы — полный цикл проектирования.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon"><i data-lucide="factory" style="width:28px;height:28px;"></i></div>
-                    <h3>Промышленные объекты</h3>
-                    <p>Цеха, производственные линии, технологическое оборудование — проектирование силового и осветительного электроснабжения.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon"><i data-lucide="sun" style="width:28px;height:28px;"></i></div>
-                    <h3>Альтернативная энергетика</h3>
-                    <p>Проектирование солнечных электростанций, систем накопления энергии, интеграция с сетью.</p>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon"><i data-lucide="file-check" style="width:28px;height:28px;"></i></div>
-                    <h3>Согласование и экспертиза</h3>
-                    <p>Полное сопровождение проекта: согласование в сетевых организациях, экспертиза, получение ТУ.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Projects (3 best on homepage) -->
-    <section class="featured-projects" id="featured">
-        <div class="container">
-            <div class="featured-header fade-in">
-                <div class="section-header">
-                    <span class="section-tag">Избранное</span>
-                    <h2 class="section-title">Лучшие проекты</h2>
-                    <p class="section-subtitle">Три ключевых объекта из портфолио</p>
-                </div>
-                <a href="portfolio.html" class="btn btn-dark view-all-btn">
-                    <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
-                    Смотреть все портфолио
-                </a>
-            </div>
-
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <span class="project-badge">2024</span>
-                        <i data-lucide="building" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>ЖК «Новые Горизонты»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Москва</span>
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 45 000 м²</span>
+                <div class="projects-grid">
+                    <article class="project-card fade-in">
+                        <div class="project-image">
+                            <time class="project-badge" datetime="2024">2024</time>
+                            <i data-lucide="building" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
                         </div>
-                        <p class="project-description">Полный комплект проектной документации для 3-секционного жилого комплекса. Внутренние сети 0,4 кВ, освещение, молниезащита.</p>
-                        <div class="project-tags">
-                            <span class="tag">Жилой объект</span>
-                            <span class="tag">0,4 кВ</span>
-                            <span class="tag">Revit</span>
+                        <div class="project-content">
+                            <h3>ЖК «Новые Горизонты»</h3>
+                            <div class="project-meta">
+                                <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Москва</span>
+                                <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 45 000 м²</span>
+                            </div>
+                            <p class="project-description">Полный комплект проектной документации для 3-секционного жилого комплекса. Внутренние сети 0,4 кВ, освещение, молниезащита.</p>
+                            <div class="project-tags">
+                                <span class="tag">Жилой объект</span>
+                                <span class="tag">0,4 кВ</span>
+                                <span class="tag">Revit</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card fade-in">
+                        <div class="project-image">
+                            <time class="project-badge" datetime="2023">2023</time>
+                            <i data-lucide="factory" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Логистический центр «Юг»</h3>
+                            <div class="project-meta">
+                                <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Ростов-на-Дону</span>
+                                <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 28 000 м²</span>
+                            </div>
+                            <p class="project-description">Проектирование электроснабжения складского комплекса класса А. Вводно-распределительное устройство 10 кВ, аварийное освещение.</p>
+                            <div class="project-tags">
+                                <span class="tag">Склад</span>
+                                <span class="tag">10 кВ</span>
+                                <span class="tag">ETAP</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card fade-in">
+                        <div class="project-image">
+                            <time class="project-badge" datetime="2023">2023</time>
+                            <i data-lucide="sun" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>СЭС «Солнечная Долина»</h3>
+                            <div class="project-meta">
+                                <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Краснодарский край</span>
+                                <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 5 МВт</span>
+                            </div>
+                            <p class="project-description">Проектирование наземной солнечной электростанции. Подстанция 10/0,4 кВ, системы мониторинга и защиты.</p>
+                            <div class="project-tags">
+                                <span class="tag">Солнечная ЭС</span>
+                                <span class="tag">Альтернатива</span>
+                                <span class="tag">AutoCAD</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="experience" id="experience">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag" style="background:rgba(245,158,11,0.2);">Опыт</span>
+                    <h2 class="section-title">Профессиональный путь</h2>
+                    <p class="section-subtitle">Карьера в сфере электротехнического проектирования</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2024-06-01">01.06.2024 — настоящее время</time>
+                            <h3>Проектировщик-электрик</h3>
+                            <h4>ИП «Dost. sowda we gurlusyk»</h4>
+                            <ul>
+                                <li>Разработка проектной и составление технической документации.</li>
+                                <li>Организация и контроль монтажных работ систем электроснабжения.</li>
+                                <li>Осуществление координации работ при реализации проектов.</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <span class="project-badge">2023</span>
-                        <i data-lucide="factory" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Логистический центр «Юг»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Ростов-на-Дону</span>
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 28 000 м²</span>
-                        </div>
-                        <p class="project-description">Проектирование электроснабжения складского комплекса класса А. Вводно-распределительное устройство 10 кВ, аварийное освещение.</p>
-                        <div class="project-tags">
-                            <span class="tag">Склад</span>
-                            <span class="tag">10 кВ</span>
-                            <span class="tag">ETAP</span>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2018-10-01">01.10.2018 — 10.11.2023</time>
+                            <h3>Инженер-энергетик</h3>
+                            <h4>ИП «Bäş Kuwwat»</h4>
+                            <ul>
+                                <li>Подбор оборудования систем электроснабжения и заказ материалов.</li>
+                                <li>Организация, координация и контроль монтажных работ на проектах.</li>
+                                <li>Обеспечение безаварийной, надежной работы оборудования и контроль над техникой безопасности.</li>
+                                <li>Составление технической документации.</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <span class="project-badge">2023</span>
-                        <i data-lucide="sun" style="width:64px;height:64px;color:rgba(255,255,255,0.3);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>СЭС «Солнечная Долина»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Краснодарский край</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 5 МВт</span>
-                        </div>
-                        <p class="project-description">Проектирование наземной солнечной электростанции. Подстанция 10/0,4 кВ, системы мониторинга и защиты.</p>
-                        <div class="project-tags">
-                            <span class="tag">Солнечная ЭС</span>
-                            <span class="tag">Альтернатива</span>
-                            <span class="tag">AutoCAD</span>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2018-02-12">12.02.2018 — 30.09.2018</time>
+                            <h3>Инженер-энергетик</h3>
+                            <h4>ИП «Taslama Hyzmatlary»</h4>
+                            <ul>
+                                <li>Разработка проектной и составление технической документации.</li>
+                                <li>Подбор оборудования, организация и контроль монтажных работ систем электроснабжения.</li>
+                                <li>Координация работ при реализации проектов и контроль техники безопасности.</li>
+                                <li>Обеспечение безаварийной и надежной работы обслуживаемого оборудования.</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="experience" id="experience">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag" style="background:rgba(245,158,11,0.2);">Опыт</span>
-                <h2 class="section-title">Профессиональный путь</h2>
-                <p class="section-subtitle">Карьера в сфере электротехнического проектирования</p>
-            </div>
-
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">01.06.2024 — настоящее время</div>
-                        <h3>Проектировщик-электрик</h3>
-                        <h4>ИП «Dost. sowda we gurlusyk»</h4>
-                        <ul>
-                            <li>Разработка проектной и составление технической документации.</li>
-                            <li>Организация и контроль монтажных работ систем электроснабжения.</li>
-                            <li>Осуществление координации работ при реализации проектов.</li>
-                        </ul>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2016-07-25">25.07.2016 — 16.12.2016</time>
+                            <h3>Инженер-энергетик</h3>
+                            <h4>ИП «Durly Yaz»</h4>
+                            <ul>
+                                <li>Разработка проектной и составление технической документации.</li>
+                                <li>Подбор оборудования и заказ необходимых материалов.</li>
+                                <li>Организация, координация и контроль монтажных работ систем электроснабжения.</li>
+                                <li>Контроль над техникой безопасности и обеспечение безаварийной работы оборудования.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">01.10.2018 — 10.11.2023</div>
-                        <h3>Инженер-энергетик</h3>
-                        <h4>ИП «Bäş Kuwwat»</h4>
-                        <ul>
-                            <li>Подбор оборудования систем электроснабжения и заказ материалов.</li>
-                            <li>Организация, координация и контроль монтажных работ на проектах.</li>
-                            <li>Обеспечение безаварийной, надежной работы оборудования и контроль над техникой безопасности.</li>
-                            <li>Составление технической документации.</li>
-                        </ul>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2016-04-24">24.04.2016 — 24.07.2016</time>
+                            <h3>Инженер-энергетик</h3>
+                            <h4>ИП «Taslama Hyzmatlary»</h4>
+                            <ul>
+                                <li>Разработка проектной и составление технической документации.</li>
+                                <li>Подбор оборудования, организация и координация монтажных работ.</li>
+                                <li>Обеспечение безаварийной работы оборудования и контроль соблюдения техники безопасности.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">12.02.2018 — 30.09.2018</div>
-                        <h3>Инженер-энергетик</h3>
-                        <h4>ИП «Taslama Hyzmatlary»</h4>
-                        <ul>
-                            <li>Разработка проектной и составление технической документации.</li>
-                            <li>Подбор оборудования, организация и контроль монтажных работ систем электроснабжения.</li>
-                            <li>Координация работ при реализации проектов и контроль техники безопасности.</li>
-                            <li>Обеспечение безаварийной и надежной работы обслуживаемого оборудования.</li>
-                        </ul>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2015-06-06">06.06.2015 — 04.12.2015</time>
+                            <h3>Ведущий инженер-энергетик</h3>
+                            <h4>ИП «ЯшТуркменлер»</h4>
+                            <ul>
+                                <li>Разработка проектной документации и технических заданий.</li>
+                                <li>Постановка задач подчиненным инженерам-проектировщикам, контроль выполнения и проверка результатов.</li>
+                                <li>Организация, координация и контроль монтажных работ систем электроснабжения.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">25.07.2016 — 16.12.2016</div>
-                        <h3>Инженер-энергетик</h3>
-                        <h4>ИП «Durly Yaz»</h4>
-                        <ul>
-                            <li>Разработка проектной и составление технической документации.</li>
-                            <li>Подбор оборудования и заказ необходимых материалов.</li>
-                            <li>Организация, координация и контроль монтажных работ систем электроснабжения.</li>
-                            <li>Контроль над техникой безопасности и обеспечение безаварийной работы оборудования.</li>
-                        </ul>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2011-05-19">19.05.2011 — 05.06.2015</time>
+                            <h3>Главный инженер электротехнического отдела</h3>
+                            <h4>Министерство Нефтегазстрой «Управление Проектных Работ»</h4>
+                            <ul>
+                                <li>Разработка проектной, технической документации и технических заданий.</li>
+                                <li>Постановка задач подчиненным инженерам-проектировщикам.</li>
+                                <li>Подбор оборудования, организация, координация и контроль монтажных работ.</li>
+                                <li>Контроль техники безопасности и обеспечение надежной работы обслуживаемого оборудования.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">24.04.2016 — 24.07.2016</div>
-                        <h3>Инженер-энергетик</h3>
-                        <h4>ИП «Taslama Hyzmatlary»</h4>
-                        <ul>
-                            <li>Разработка проектной и составление технической документации.</li>
-                            <li>Подбор оборудования, организация и координация монтажных работ.</li>
-                            <li>Обеспечение безаварийной работы оборудования и контроль соблюдения техники безопасности.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">06.06.2015 — 04.12.2015</div>
-                        <h3>Ведущий инженер-энергетик</h3>
-                        <h4>ИП «ЯшТуркменлер»</h4>
-                        <ul>
-                            <li>Разработка проектной документации и технических заданий.</li>
-                            <li>Постановка задач подчиненным инженерам-проектировщикам, контроль выполнения и проверка результатов.</li>
-                            <li>Организация, координация и контроль монтажных работ систем электроснабжения.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">19.05.2011 — 05.06.2015</div>
-                        <h3>Главный инженер электротехнического отдела</h3>
-                        <h4>Министерство Нефтегазстрой «Управление Проектных Работ»</h4>
-                        <ul>
-                            <li>Разработка проектной, технической документации и технических заданий.</li>
-                            <li>Постановка задач подчиненным инженерам-проектировщикам.</li>
-                            <li>Подбор оборудования, организация, координация и контроль монтажных работ.</li>
-                            <li>Контроль техники безопасности и обеспечение надежной работы обслуживаемого оборудования.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">29.01.2010 — 16.05.2011</div>
-                        <h3>Монтажник кабельных линий 10-35кВ</h3>
-                        <h4>Корпорация ТуркменЭнерго – Ашэнерго – Служба кабельных линий</h4>
-                        <ul>
-                            <li>Прокладка и монтаж кабеля напряжением 6, 10, 35 кВ.</li>
-                            <li>Монтаж соединительных и концевых кабельных муфт 6, 10, 35 кВ.</li>
-                            <li>Монтаж распределительных устройств (РУ) 6, 10, 35 кВ.</li>
-                        </ul>
+                    <div class="timeline-item fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <time class="timeline-date" datetime="2010-01-29">29.01.2010 — 16.05.2011</time>
+                            <h3>Монтажник кабельных линий 10-35кВ</h3>
+                            <h4>Корпорация ТуркменЭнерго – Ашэнерго – Служба кабельных линий</h4>
+                            <ul>
+                                <li>Прокладка и монтаж кабеля напряжением 6, 10, 35 кВ.</li>
+                                <li>Монтаж соединительных и концевых кабельных муфт 6, 10, 35 кВ.</li>
+                                <li>Монтаж распределительных устройств (РУ) 6, 10, 35 кВ.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Компетенции</span>
-                <h2 class="section-title">Навыки и технологии</h2>
-                <p class="section-subtitle">Профессиональные инструменты и области экспертизы</p>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category fade-in">
-                    <h3><i data-lucide="monitor" style="width:20px;height:20px;color:var(--accent);"></i> Программное обеспечение</h3>
-                    <div class="skill-item"><div class="skill-header"><span>AutoCAD</span><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>Revit / BIM</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>ETAP / DiaLUX</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>Compass / nanoCAD</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" data-width="80"></div></div></div>
+        <!-- Skills -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">Компетенции</span>
+                    <h2 class="section-title">Навыки и технологии</h2>
+                    <p class="section-subtitle">Профессиональные инструменты и области экспертизы</p>
                 </div>
 
-                <div class="skill-category fade-in">
-                    <h3><i data-lucide="book-open" style="width:20px;height:20px;color:var(--accent);"></i> Нормативная база</h3>
-                    <div class="skill-item"><div class="skill-header"><span>ПУЭ / ПТЭЭП</span><span>98%</span></div><div class="skill-bar"><div class="skill-progress" data-width="98"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>СП 256, СП 31, СП 76</span><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>ГОСТ Р 50571</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>ФЗ-261 (энергосбережение)</span><span>88%</span></div><div class="skill-bar"><div class="skill-progress" data-width="88"></div></div></div>
-                </div>
+                <div class="skills-grid">
+                    <div class="skill-category fade-in">
+                        <h3><i data-lucide="monitor" style="width:20px;height:20px;color:var(--accent);"></i> Программное обеспечение</h3>
+                        <div class="skill-item"><div class="skill-header"><span>AutoCAD</span><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>Revit / BIM</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>ETAP / DiaLUX</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>Compass / nanoCAD</span><span>80%</span></div><div class="skill-bar"><div class="skill-progress" data-width="80"></div></div></div>
+                    </div>
 
-                <div class="skill-category fade-in">
-                    <h3><i data-lucide="cpu" style="width:20px;height:20px;color:var(--accent);"></i> Технические навыки</h3>
-                    <div class="skill-item"><div class="skill-header"><span>Расчет КЗ и селективности</span><span>92%</span></div><div class="skill-bar"><div class="skill-progress" data-width="92"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>Проектирование АСКУЭ</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>Молниезащита и заземление</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span>Слаботочные системы</span><span>75%</span></div><div class="skill-bar"><div class="skill-progress" data-width="75"></div></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="skill-category fade-in">
+                        <h3><i data-lucide="book-open" style="width:20px;height:20px;color:var(--accent);"></i> Нормативная база</h3>
+                        <div class="skill-item"><div class="skill-header"><span>ПУЭ / ПТЭЭП</span><span>98%</span></div><div class="skill-bar"><div class="skill-progress" data-width="98"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>СП 256, СП 31, СП 76</span><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>ГОСТ Р 50571</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>ФЗ-261 (энергосбережение)</span><span>88%</span></div><div class="skill-bar"><div class="skill-progress" data-width="88"></div></div></div>
+                    </div>
 
-    <!-- Certificates -->
-    <section class="certificates" id="certificates">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Образование</span>
-                <h2 class="section-title">Сертификаты и дипломы</h2>
-                <p class="section-subtitle">Подтверждение квалификации и постоянное развитие</p>
-            </div>
-
-            <div class="cert-grid">
-                <div class="cert-card fade-in">
-                    <div class="cert-icon"><i data-lucide="graduation-cap" style="width:32px;height:32px;"></i></div>
-                    <h3>Средне-техническое образование</h3>
-                    <p>Лицей №5<br>«Программирование»<br>2005 — 2006</p>
-                </div>
-
-                <div class="cert-card fade-in">
-                    <div class="cert-icon"><i data-lucide="shield-check" style="width:32px;height:32px;"></i></div>
-                    <h3>Группа допуска IV</h3>
-                    <p>До 10000 В<br>Действующий<br>Пересдача: 2027</p>
-                </div>
-
-                <div class="cert-card fade-in">
-                    <div class="cert-icon"><i data-lucide="award" style="width:32px;height:32px;"></i></div>
-                    <h3>Аттестат проектировщика</h3>
-                    <p>№ <br>Категория сложности: II<br>Область: электроснабжение</p>
-                </div>
-
-                <div class="cert-card fade-in">
-                    <div class="cert-icon"><i data-lucide="leaf" style="width:32px;height:32px;"></i></div>
-                    <h3>Энергоаудитор</h3>
-                    <p>Свидетельство о повышении квалификации<br>Минэнерго ТМ, 2021</p>
+                    <div class="skill-category fade-in">
+                        <h3><i data-lucide="cpu" style="width:20px;height:20px;color:var(--accent);"></i> Технические навыки</h3>
+                        <div class="skill-item"><div class="skill-header"><span>Расчет КЗ и селективности</span><span>92%</span></div><div class="skill-bar"><div class="skill-progress" data-width="92"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>Проектирование АСКУЭ</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>Молниезащита и заземление</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
+                        <div class="skill-item"><div class="skill-header"><span>Слаботочные системы</span><span>75%</span></div><div class="skill-bar"><div class="skill-progress" data-width="75"></div></div></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-tag">Контакты</span>
-                <h2 class="section-title">Давайте работать вместе</h2>
-                <p class="section-subtitle">Готов обсудить ваш проект и ответить на вопросы</p>
-            </div>
-
-            <div class="contact-container">
-                <div class="contact-info fade-in">
-                    <h2>Свяжитесь со мной</h2>
-                    <p>Заполните форму или используйте контактные данные. Обычно отвечаю в течение рабочего дня.</p>
-
-                    <div class="contact-item">
-                        <div class="contact-icon"><i data-lucide="phone" style="width:22px;height:22px;"></i></div>
-                        <div><h4>Телефон</h4><p>+993 (61) 24-72-57</p></div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon"><i data-lucide="mail" style="width:22px;height:22px;"></i></div>
-                        <div><h4>Email</h4><p>sselektrodesign@gmail.com</p></div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon"><i data-lucide="map-pin" style="width:22px;height:22px;"></i></div>
-                        <div><h4>Локация</h4><p>Ашхабад, работа по всему миру</p></div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon"><i data-lucide="clock" style="width:22px;height:22px;"></i></div>
-                        <div><h4>График работы</h4><p>Пн-Пт: 9:00 — 18:00</p></div>
-                    </div>
+        <!-- Certificates -->
+        <section class="certificates" id="certificates">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">Образование</span>
+                    <h2 class="section-title">Сертификаты и дипломы</h2>
+                    <p class="section-subtitle">Подтверждение квалификации и постоянное развитие</p>
                 </div>
 
-                <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" placeholder="Ваше имя" required>
-                    </div>
+                <div class="cert-grid">
+                    <article class="cert-card fade-in">
+                        <div class="cert-icon"><i data-lucide="graduation-cap" style="width:32px;height:32px;"></i></div>
+                        <h3>Средне-техническое образование</h3>
+                        <p>Лицей №5<br>«Программирование»<br>2005 — 2006</p>
+                    </article>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="example@mail.com" required>
-                    </div>
+                    <article class="cert-card fade-in">
+                        <div class="cert-icon"><i data-lucide="shield-check" style="width:32px;height:32px;"></i></div>
+                        <h3>Группа допуска IV</h3>
+                        <p>До 10000 В<br>Действующий<br>Пересдача: 2027</p>
+                    </article>
 
-                    <div class="form-group">
-                        <label for="type">Тип объекта</label>
-                        <select id="type" required>
-                            <option value="">Выберите тип</option>
-                            <option value="residential">Жилой объект</option>
-                            <option value="commercial">Коммерческий объект</option>
-                            <option value="industrial">Промышленный объект</option>
-                            <option value="reconstruction">Реконструкция</option>
-                            <option value="other">Другое</option>
-                        </select>
-                    </div>
+                    <article class="cert-card fade-in">
+                        <div class="cert-icon"><i data-lucide="award" style="width:32px;height:32px;"></i></div>
+                        <h3>Аттестат проектировщика</h3>
+                        <p>Категория сложности: II<br>Область: электроснабжение</p>
+                    </article>
 
-                    <div class="form-group">
-                        <label for="message">Описание проекта</label>
-                        <textarea id="message" placeholder="Кратко опишите задачу, площадь, сроки..." required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
-                        <i data-lucide="send" style="width:18px;height:18px;"></i>
-                        Отправить заявку
-                    </button>
-                </form>
+                    <article class="cert-card fade-in">
+                        <div class="cert-icon"><i data-lucide="leaf" style="width:32px;height:32px;"></i></div>
+                        <h3>Энергоаудитор</h3>
+                        <p>Свидетельство о повышении квалификации<br>Минэнерго ТМ, 2021</p>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <span class="section-tag">Контакты</span>
+                    <h2 class="section-title">Давайте работать вместе</h2>
+                    <p class="section-subtitle">Готов обсудить ваш проект и ответить на вопросы</p>
+                </div>
+
+                <div class="contact-container">
+                    <div class="contact-info fade-in">
+                        <h2>Свяжитесь со мной</h2>
+                        <p>Заполните форму или используйте контактные данные. Обычно отвечаю в течение рабочего дня.</p>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i data-lucide="phone" style="width:22px;height:22px;"></i></div>
+                            <div>
+                                <h4>Телефон</h4>
+                                <p><a href="tel:+99361247257">+993 (61) 24-72-57</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i data-lucide="mail" style="width:22px;height:22px;"></i></div>
+                            <div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:sselektrodesign@gmail.com">sselektrodesign@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i data-lucide="map-pin" style="width:22px;height:22px;"></i></div>
+                            <div>
+                                <h4>Локация</h4>
+                                <p>Ашхабад, работа по всему миру</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon"><i data-lucide="clock" style="width:22px;height:22px;"></i></div>
+                            <div>
+                                <h4>График работы</h4>
+                                <p>Пн-Пт: 9:00 — 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" placeholder="Иван Иванов" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="example@mail.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type">Тип объекта</label>
+                            <select id="type" required>
+                                <option value="">Выберите тип</option>
+                                <option value="residential">Жилой объект</option>
+                                <option value="commercial">Коммерческий объект</option>
+                                <option value="industrial">Промышленный объект</option>
+                                <option value="reconstruction">Реконструкция</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Описание проекта</label>
+                            <textarea id="message" placeholder="Кратко опишите задачу, площадь, сроки..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+                            <i data-lucide="send" style="width:18px;height:18px;"></i>
+                            Отправить заявку
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -698,9 +803,9 @@
             <div class="footer-top">
                 <div class="footer-logo">Sолодянкин<span>Sергей</span></div>
                 <div class="social-links">
-                    <a href="#" aria-label="Telegram @LordEnergy"><i data-lucide="send" style="width:18px;height:18px;"></i></a>
-                    <a href="#" aria-label="WhatsApp"><i data-lucide="message-circle" style="width:18px;height:18px;"></i></a>
-                    <a href="#" aria-label="Email"><i data-lucide="mail" style="width:18px;height:18px;"></i></a>
+                    <a href="https://t.me/LordEnergy" target="_blank" rel="noopener" aria-label="Telegram @LordEnergy"><i data-lucide="send" style="width:18px;height:18px;"></i></a>
+                    <a href="https://wa.me/99361247257" target="_blank" rel="noopener" aria-label="WhatsApp"><i data-lucide="message-circle" style="width:18px;height:18px;"></i></a>
+                    <a href="mailto:sselektrodesign@gmail.com" aria-label="Email"><i data-lucide="mail" style="width:18px;height:18px;"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -710,10 +815,10 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal" id="modal">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
             <i data-lucide="check-circle" style="width:48px;height:48px;color:var(--success);margin-bottom:1rem;"></i>
-            <h3>Заявка отправлена!</h3>
+            <h3 id="modal-title">Заявка отправлена!</h3>
             <p>Спасибо за обращение. Я свяжусь с вами в ближайшее время для обсуждения деталей проекта.</p>
             <button class="modal-close" onclick="closeModal()">Закрыть</button>
         </div>
