@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://ssdesign-e.github.io/index.html
+
+Sitemap: https://ssdesign-e.github.io/sitemap.xml
