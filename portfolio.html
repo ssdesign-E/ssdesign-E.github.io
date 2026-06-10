@@ -24,1196 +24,616 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; background: var(--light-gray); }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        body { font-family: 'Inter', sans-serif; background: var(--light-gray); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header / Hero */
+        header { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%); color: var(--white); padding: 80px 0 60px 0; text-align: center; position: relative; }
+        .back-btn { position: absolute; top: 24px; left: 24px; display: inline-flex; align-items: center; gap: 8px; color: var(--white); opacity: 0.8; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.05); }
+        .back-btn:hover { opacity: 1; background: rgba(255,255,255,0.1); transform: translateX(-2px); }
+        
+        header h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
+        header p { font-size: 18px; color: #94a3b8; font-weight: 300; max-width: 600px; margin: 0 auto 32px auto; }
+        
+        /* Filter Tabs */
+        .filter-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; margin-top: -20px; position: relative; z-index: 10; padding: 0 16px; }
+        .filter-btn { background: var(--white); color: var(--dark-light); border: 1px solid var(--border); padding: 10px 20px; border-radius: 30px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .filter-btn:hover { border-color: var(--primary-light); color: var(--primary); transform: translateY(-1px); }
+        .filter-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: 0 10px 15px -3px rgba(30,58,95,0.25); }
+        
+        /* Grid */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px; margin-bottom: 80px; }
+        
+        /* Project Card */
+        .project-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03); border: 1px solid var(--border); cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%; position: relative; }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); border-color: #cbd5e1; }
+        
+        .card-hero { height: 200px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #e2e8f0; }
+        .card-hero img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .project-card:hover .card-hero img { transform: scale(1.05); }
+        
+        .card-icon-wrapper { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; background: rgba(255,255,255,0.9); backdrop-filter: blur(4px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.05); z-index: 2; }
+        
+        .card-status { position: absolute; top: 16px; left: 16px; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 6px; backdrop-filter: blur(4px); z-index: 2; }
+        .status-progress { background: rgba(245, 158, 11, 0.15); color: #d97706; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .status-done { background: rgba(16, 185, 129, 0.15); color: #059669; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+        
+        .card-body { padding: 24px; display: flex; flex-direction: flex-column; flex-grow: 1; }
+        .card-body h3 { font-size: 19px; font-weight: 600; color: var(--dark); margin-bottom: 8px; line-height: 1.4; }
+        .card-meta { display: flex; align-items: center; gap: 16px; color: var(--gray); font-size: 13px; margin-bottom: 16px; }
+        .card-meta span { display: inline-flex; align-items: center; gap: 4px; }
+        
+        .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 16px; }
+        .card-tag { background: var(--light-gray); color: var(--gray); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+        
+        /* Empty State */
+        .no-results { display: none; text-align: center; padding: 60px 24px; color: var(--gray); background: var(--white); border-radius: 16px; border: 1px dashed var(--border); grid-column: 1 / -1; }
+        .no-results i { margin-bottom: 12px; color: #cbd5e1; }
+        
+        /* Modal Framework */
+        .modal-backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px); z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; display: flex; align-items: center; justify-content: center; padding: 24px; }
+        .modal-backdrop.active { opacity: 1; pointer-events: auto; }
+        
+        .modal-window { background: var(--white); width: 100%; max-width: 1000px; max-height: calc(100vh - 48px); border-radius: 24px; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); position: relative; transform: translateY(30px) scale(0.98); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); display: flex; flex-direction: column; }
+        .modal-backdrop.active .modal-window { transform: translateY(0) scale(1); }
+        
+        .modal-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: var(--white); border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--dark); cursor: pointer; transition: all 0.2s ease; z-index: 10; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .modal-close:hover { background: var(--light-gray); transform: scale(1.05); }
+        
+        /* Modal Layout */
+        .modal-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: 550px; }
+        
+        /* Gallery Left Side */
+        .modal-gallery-side { background: #f8fafc; padding: 32px; display: flex; flex-direction: column; gap: 20px; border-right: 1px solid var(--border); }
+        .modal-main-hero { height: 340px; border-radius: 16px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); background: #cbd5e1; }
+        .modal-main-hero img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s ease; }
+        
+        .modal-thumbs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 10px; margin-top: auto; }
+        .modal-thumb { height: 60px; border-radius: 8px; cursor: pointer; overflow: hidden; border: 2px solid transparent; transition: all 0.2s ease; background: #e2e8f0; }
+        .modal-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-thumb:hover { transform: translateY(-2px); border-color: #cbd5e1; }
+        .modal-thumb.active { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(245,158,11,0.2); }
+        
+        /* Content Right Side */
+        .modal-content-side { padding: 40px; display: flex; flex-direction: column; overflow-y: auto; }
+        .modal-header { margin-bottom: 24px; }
+        .modal-header h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--dark); line-height: 1.3; margin-bottom: 12px; padding-right: 24px; }
+        
+        .modal-specs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px; background: var(--light-gray); border-radius: 12px; margin-bottom: 24px; }
+        .spec-item { display: flex; flex-direction: column; gap: 4px; }
+        .spec-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); font-weight: 600; }
+        .spec-value { font-size: 14px; color: var(--dark); font-weight: 500; }
+        
+        .modal-section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .modal-desc { color: var(--dark-light); font-size: 15px; margin-bottom: 28px; line-height: 1.6; }
+        
+        .modal-tasks { list-style: none; margin-bottom: 32px; }
+        .modal-tasks li { position: relative; padding-left: 24px; margin-bottom: 10px; font-size: 14px; color: var(--dark-light); }
+        .modal-tasks li::before { content: ""; position: absolute; top: 8px; left: 4px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+        
+        .modal-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+        .modal-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--primary); color: var(--white); padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(30,58,95,0.15); }
+        .modal-cta-btn:hover { background: var(--primary-light); transform: translateY(-1px); box-shadow: 0 6px 12px rgba(30,58,95,0.2); }
 
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border); transition: all 0.3s ease; }
-        nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; font-size: 0.95rem; transition: color 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a.active { color: var(--accent); }
-        .nav-links a.active::after { width: 100%; }
-        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--primary); }
-
-        /* Page Header */
-        .page-header { background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); padding: 140px 2rem 80px; position: relative; overflow: hidden; }
-        .page-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: 0.5; }
-        .page-header-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
-        .breadcrumb { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.6); font-size: 0.875rem; margin-bottom: 1.5rem; }
-        .breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s; }
-        .breadcrumb a:hover { color: var(--accent); }
-        .page-header h1 { font-size: 3rem; color: var(--white); margin-bottom: 1rem; }
-        .page-header h1 span { color: var(--accent); }
-        .page-header p { color: rgba(255,255,255,0.8); font-size: 1.125rem; max-width: 600px; }
-        .stats-bar { display: flex; gap: 3rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
-        .stats-bar-item { text-align: center; }
-        .stats-bar-item .number { font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
-        .stats-bar-item .label { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
-
-        /* Filters */
-        .filters-section { background: var(--white); padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 65px; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .filters-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-        .filter-label { font-weight: 600; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; margin-right: 0.5rem; }
-        .filter-btn { padding: 0.5rem 1.25rem; border: 1px solid var(--border); background: var(--white); border-radius: 50px; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 500; color: var(--gray); transition: all 0.3s; }
-        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .filter-btn.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
-
-        /* Projects Grid */
-        .projects-section { padding: 3rem 2rem 6rem; }
-        .projects-container { max-width: 1200px; margin: 0 auto; }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
-        .project-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: all 0.4s cubic-bezier(0.4,0,0.2,1); border: 1px solid var(--border); }
-        .project-card.hidden { display: none; }
-        .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-        .project-image { height: 220px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .project-image-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(15,23,42,0.7) 0%, transparent 60%); display: flex; align-items: flex-end; padding: 1.5rem; }
-        .project-year { position: absolute; top: 1rem; right: 1rem; background: var(--accent); color: var(--white); padding: 0.375rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; z-index: 2; }
-        .project-location { color: rgba(255,255,255,0.9); font-size: 0.875rem; display: flex; align-items: center; gap: 0.375rem; }
-        .project-content { padding: 1.75rem; }
-        .project-content h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--dark); }
-        .project-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; color: var(--gray); font-size: 0.875rem; }
-        .project-meta span { display: flex; align-items: center; gap: 0.375rem; }
-        .project-description { color: var(--gray); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem; }
-        .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
-        .tag { padding: 0.375rem 0.875rem; background: var(--light-gray); color: var(--primary); border-radius: 50px; font-size: 0.8rem; font-weight: 500; }
-        .project-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); }
-        .project-status { display: flex; align-items: center; gap: 0.375rem; font-size: 0.875rem; font-weight: 500; }
-        .status-completed { color: var(--success); }
-        .status-progress { color: var(--accent); }
-        .project-link { background: none; border: none; color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem; display: flex; align-items: center; gap: 0.25rem; transition: gap 0.3s; cursor: pointer; padding: 0; }
-        .project-link:hover { gap: 0.5rem; }
-
-        /* No Results */
-        .no-results { text-align: center; padding: 4rem 2rem; display: none; }
-        .no-results.active { display: block; }
-        .no-results i { color: var(--gray); margin-bottom: 1rem; }
-        .no-results h3 { color: var(--dark); margin-bottom: 0.5rem; }
-        .no-results p { color: var(--gray); }
-
-        /* CTA Section */
-        .cta-section { background: var(--dark); padding: 5rem 2rem; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-        .cta-container { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
-        .cta-container h2 { font-size: 2.5rem; color: var(--white); margin-bottom: 1rem; }
-        .cta-container h2 span { color: var(--accent); }
-        .cta-container p { color: rgba(255,255,255,0.7); font-size: 1.125rem; margin-bottom: 2rem; }
-        .btn { padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1rem; cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
-        .btn-primary { background: var(--accent); color: var(--white); }
-        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(245,158,11,0.3); }
-        .btn-large { padding: 1.25rem 2.5rem; font-size: 1.1rem; }
-
-        /* Footer */
-        footer { background: var(--dark-light); color: var(--white); padding: 3rem 2rem 2rem; }
-        .footer-container { max-width: 1200px; margin: 0 auto; }
-        .footer-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
-        .footer-logo span { color: var(--accent); }
-        .social-links { display: flex; gap: 1rem; }
-        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--white); transition: all 0.3s; text-decoration: none; }
-        .social-links a:hover { background: var(--accent); transform: translateY(-3px); }
-        .footer-bottom { text-align: center; color: rgba(255,255,255,0.5); font-size: 0.875rem; }
-
-        /* Animations */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        /* ============================================================
-           MODAL STYLES
-        ============================================================ */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 3000;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            backdrop-filter: blur(4px);
+        /* Responsive Windows */
+        @media (max-width: 900px) {
+            .modal-grid { grid-template-columns: 1fr; }
+            .modal-gallery-side { border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
+            .modal-main-hero { height: 260px; }
+            .modal-content-side { padding: 24px; }
+            .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         }
-        .modal-overlay.active {
-            display: flex;
-            animation: overlayIn 0.25s ease forwards;
-        }
-        @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .modal-box {
-            background: var(--white);
-            border-radius: 20px;
-            max-width: 700px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: modalIn 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
-            position: relative;
-        }
-        @keyframes modalIn { from { opacity: 0; transform: translateY(28px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-
-        .modal-box::-webkit-scrollbar { width: 6px; }
-        .modal-box::-webkit-scrollbar-track { background: transparent; }
-        .modal-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-        .modal-hero {
-            height: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border-radius: 20px 20px 0 0;
-            overflow: hidden;
-        }
-        .modal-hero-badge {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            background: var(--accent);
-            color: var(--white);
-            padding: 0.375rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-        .modal-close-btn {
-            position: absolute;
-            top: 1.25rem;
-            left: 1.25rem;
-            width: 38px;
-            height: 38px;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.25);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: background 0.2s;
-            backdrop-filter: blur(6px);
-        }
-        .modal-close-btn:hover { background: rgba(255,255,255,0.3); }
-
-        .modal-thumbs {
-            display: flex;
-            gap: 8px;
-            padding: 1.25rem 1.5rem 0;
-        }
-        .modal-thumb {
-            flex: 1;
-            height: 68px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s, opacity 0.2s;
-            opacity: 0.6;
-            font-size: 1.4rem;
-        }
-        .modal-thumb:hover { opacity: 0.85; }
-        .modal-thumb.active { border-color: var(--accent); opacity: 1; }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-        .modal-top-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.25rem;
-            gap: 1rem;
-        }
-        .modal-title {
-            font-size: 1.5rem;
-            color: var(--dark);
-            margin-bottom: 0.25rem;
-        }
-        .modal-location {
-            font-size: 0.9rem;
-            color: var(--gray);
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        .modal-status-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            white-space: nowrap;
-            padding: 0.4rem 0.875rem;
-            border-radius: 50px;
-            flex-shrink: 0;
-        }
-        .modal-status-badge.completed {
-            background: rgba(16,185,129,0.1);
-            color: var(--success);
-        }
-        .modal-status-badge.progress {
-            background: rgba(245,158,11,0.1);
-            color: var(--accent);
-        }
-        .modal-status-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-        }
-        .completed .modal-status-dot { background: var(--success); }
-        .progress .modal-status-dot { background: var(--accent); }
-
-        .modal-specs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 1.5rem;
-        }
-        .spec-card {
-            background: var(--light-gray);
-            border-radius: 10px;
-            padding: 0.75rem 0.875rem;
-        }
-        .spec-label {
-            font-size: 0.75rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.25rem;
-        }
-        .spec-value {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .modal-section-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.75rem;
-        }
-        .modal-desc-text {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        .modal-tasks {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.5rem;
-        }
-        .modal-tasks li {
-            font-size: 0.9rem;
-            color: var(--gray);
-            padding: 0.625rem 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-        .modal-tasks li:last-child { border-bottom: none; }
-        .task-bullet {
-            width: 7px; height: 7px;
-            background: var(--accent);
-            border-radius: 50%;
-            margin-top: 6px;
-            flex-shrink: 0;
-        }
-        .modal-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .modal-tag { padding: 0.375rem 0.875rem; background: var(--light-gray); color: var(--primary); border-radius: 50px; font-size: 0.8rem; font-weight: 500; }
-
-        .modal-footer-row {
-            border-top: 1px solid var(--border);
-            padding-top: 1.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-        .modal-year-info { font-size: 0.875rem; color: var(--gray); }
-        .modal-cta-btn {
-            background: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: 10px;
-            padding: 0.75rem 1.5rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.2s;
-        }
-        .modal-cta-btn:hover { background: var(--dark); transform: translateY(-1px); }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .page-header h1 { font-size: 2.5rem; }
-            .stats-bar { gap: 2rem; }
-            .modal-specs { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 640px) {
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .page-header { padding: 120px 1.5rem 60px; }
-            .page-header h1 { font-size: 2rem; }
-            .stats-bar { flex-wrap: wrap; gap: 1.5rem; }
-            .filters-container { gap: 0.5rem; }
-            .filter-btn { padding: 0.4rem 1rem; font-size: 0.8rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .cta-container h2 { font-size: 1.75rem; }
-            .modal-box { border-radius: 16px; max-height: 95vh; }
-            .modal-hero { height: 200px; }
-            .modal-specs { grid-template-columns: repeat(2, 1fr); }
-            .modal-footer-row { flex-direction: column; align-items: stretch; }
-            .modal-cta-btn { justify-content: center; }
+        @media (max-width: 48px) {
+            header h1 { font-size: 32px; }
+            .filter-buttons { gap: 8px; }
+            .filter-btn { padding: 8px 16px; font-size: 13px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">Sолодянкин<span>Sергей</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html#services">Услуги</a></li>
-                <li><a href="portfolio.html" class="active">Портфолио</a></li>
-                <li><a href="index.html#experience">Опыт</a></li>
-                <li><a href="index.html#skills">Навыки</a></li>
-                <li><a href="index.html#certificates">Сертификаты</a></li>
-                <li><a href="index.html#contact">Контакты</a></li>
-            </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Открыть меню">
-                <i data-lucide="menu" style="width:24px;height:24px;"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Page Header -->
-    <header class="page-header">
-        <div class="page-header-content">
-            <div class="breadcrumb">
-                <a href="index.html">Главная</a>
-                <i data-lucide="chevron-right" style="width:16px;height:16px;"></i>
-                <span>Портфолио</span>
-            </div>
-            <h1>Реализованные <span>проекты</span></h1>
-            <p>Подборка выполненных работ в сфере проектирования электроснабжения. От жилых комплексов до промышленных объектов и альтернативной энергетики.</p>
-            <div class="stats-bar">
-                <div class="stats-bar-item"><span class="number">150+</span><span class="label">Всего проектов</span></div>
-                <div class="stats-bar-item"><span class="number">12</span><span class="label">Лет работы</span></div>
-                <div class="stats-bar-item"><span class="number">98%</span><span class="label">Успешных сдач</span></div>
-                <div class="stats-bar-item"><span class="number">8</span><span class="label">Стран</span></div>
-            </div>
+    <header>
+        <a href="index.html" class="back-btn">
+            <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> На главную
+        </a>
+        <div class="container">
+            <h1>Выполненные проекты</h1>
+            <p>Инженерное проектирование внешних и внутренних электрических сетей, систем освещения и автоматизации на объектах государственного и коммерческого сектора.</p>
         </div>
     </header>
 
-    <!-- Filters -->
-    <div class="filters-section">
-        <div class="filters-container">
-            <span class="filter-label">
-                <i data-lucide="filter" style="width:18px;height:18px;"></i>
-                Фильтр:
-            </span>
-            <button class="filter-btn active" data-filter="all">Все проекты</button>
-            <button class="filter-btn" data-filter="residential">Жилые</button>
-            <button class="filter-btn" data-filter="commercial">Коммерция</button>
-            <button class="filter-btn" data-filter="industrial">Промышленность</button>
-            <button class="filter-btn" data-filter="energy">Энергетика</button>
-            <button class="filter-btn" data-filter="reconstruction">Реконструкция</button>
+    <main class="container" style="margin-top: 40px;">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Все объекты</button>
+            <button class="filter-btn" data-filter="commercial">Коммерция и ТРЦ</button>
+            <button class="filter-btn" data-filter="infrastructure">Инфраструктура и Дороги</button>
+            <button class="filter-btn" data-filter="industrial">Промышленность и Логистика</button>
+            <button class="filter-btn" data-filter="hydro">Гидротехника и Водоснабжение</button>
+            <button class="filter-btn" data-filter="energy">Энергетика 10кВ</button>
         </div>
-    </div>
 
-    <!-- Projects -->
-    <section class="projects-section">
-        <div class="projects-container">
-            <div class="projects-grid" id="projectsGrid">
-
-                <!-- Project 1 -->
-                <article class="project-card fade-in" data-category="residential">
-                    <div class="project-image" style="background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);">
-                        <span class="project-year">2024</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Москва, Россия
-                            </span>
-                        </div>
-                        <i data-lucide="building" style="width:64px;height:64px;color:rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>ЖК «Новые Горизонты»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 45 000 м²</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
-                        </div>
-                        <p class="project-description">Полный комплект проектной документации для 3-секционного жилого комплекса. Внутренние сети, освещение, молниезащита, слаботочные системы.</p>
-                        <div class="project-tags">
-                            <span class="tag">Жилой объект</span>
-                            <span class="tag">Revit</span>
-                            <span class="tag">BIM</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p1')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 2 -->
-                <article class="project-card fade-in" data-category="commercial">
-                    <div class="project-image" style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%);">
-                        <span class="project-year">2024</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Ашхабад, Туркменистан
-                            </span>
-                        </div>
-                        <i data-lucide="building-2" style="width:64px;height:64px;color:rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Бизнес-центр «Алтын Асыр»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 12 000 м²</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 10 кВ</span>
-                        </div>
-                        <p class="project-description">Проектирование электроснабжения офисного центра класса А. Вводная подстанция, системы резервирования, структурированные кабельные сети.</p>
-                        <div class="project-tags">
-                            <span class="tag">Офис</span>
-                            <span class="tag">AutoCAD</span>
-                            <span class="tag">СКС</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-progress">
-                                <i data-lucide="clock" style="width:16px;height:16px;"></i>
-                                В работе
-                            </span>
-                            <button class="project-link" onclick="openModal('p2')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 3 -->
-                <article class="project-card fade-in" data-category="industrial">
-                    <div class="project-image" style="background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);">
-                        <span class="project-year">2023</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Ростов-на-Дону, Россия
-                            </span>
-                        </div>
-                        <i data-lucide="factory" style="width:64px;height:64px;color:rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Логистический центр «Юг»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 28 000 м²</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 10 кВ</span>
-                        </div>
-                        <p class="project-description">Складской комплекс класса А. ВРУ 10 кВ, аварийное освещение, системы пожарной безопасности, учёт электроэнергии.</p>
-                        <div class="project-tags">
-                            <span class="tag">Склад</span>
-                            <span class="tag">ETAP</span>
-                            <span class="tag">АСКУЭ</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p3')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 4 -->
-                <article class="project-card fade-in" data-category="energy">
-                    <div class="project-image" style="background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);">
-                        <span class="project-year">2023</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Краснодарский край, Россия
-                            </span>
-                        </div>
-                        <i data-lucide="sun" style="width:64px;height:64px;color:rgba(255,255,255,0.25);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>СЭС «Солнечная Долина»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 5 МВт</span>
-                            <span><i data-lucide="sun" style="width:14px;height:14px;"></i> 12 000 панелей</span>
-                        </div>
-                        <p class="project-description">Наземная солнечная электростанция. Подстанция 10/0,4 кВ, инверторные комплексы, системы мониторинга и защиты.</p>
-                        <div class="project-tags">
-                            <span class="tag">Солнечная ЭС</span>
-                            <span class="tag">Альтернатива</span>
-                            <span class="tag">AutoCAD</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p4')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 5 -->
-                <article class="project-card fade-in" data-category="reconstruction">
-                    <div class="project-image" style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%);">
-                        <span class="project-year">2023</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Санкт-Петербург, Россия
-                            </span>
-                        </div>
-                        <i data-lucide="store" style="width:64px;height:64px;color:rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>ТЦ «Галерея Парк»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 18 000 м²</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
-                        </div>
-                        <p class="project-description">Реконструкция электроснабжения торгового центра. Замена ЩО-70, модернизация освещения, внедрение АСКУЭ, LED-ретрофит.</p>
-                        <div class="project-tags">
-                            <span class="tag">Реконструкция</span>
-                            <span class="tag">АСКУЭ</span>
-                            <span class="tag">Dialux</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p5')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 6 -->
-                <article class="project-card fade-in" data-category="industrial">
-                    <div class="project-image" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);">
-                        <span class="project-year">2022</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Ташкент, Узбекистан
-                            </span>
-                        </div>
-                        <i data-lucide="cog" style="width:64px;height:64px;color:rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Текстильная фабрика «Узтекстиль»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 35 000 м²</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 10 кВ</span>
-                        </div>
-                        <p class="project-description">Полный цикл проектирования для текстильного производства. Силовое электроснабжение, освещение цехов, заземление, молниезащита.</p>
-                        <div class="project-tags">
-                            <span class="tag">Промышленность</span>
-                            <span class="tag">ETAP</span>
-                            <span class="tag">Расчет КЗ</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p6')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 7 -->
-                <article class="project-card fade-in" data-category="residential">
-                    <div class="project-image" style="background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);">
-                        <span class="project-year">2022</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Ашхабад, Туркменистан
-                            </span>
-                        </div>
-                        <i data-lucide="home" style="width:64px;height:64px;color:rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Коттеджный поселок «Багтыярлык»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="home" style="width:14px;height:14px;"></i> 120 домов</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
-                        </div>
-                        <p class="project-description">Проектирование наружных сетей и индивидуальных домов премиум-класса. Кабельные линии, трансформаторная подстанция, освещение территории.</p>
-                        <div class="project-tags">
-                            <span class="tag">Коттеджи</span>
-                            <span class="tag">Наружные сети</span>
-                            <span class="tag">AutoCAD</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p7')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 8 -->
-                <article class="project-card fade-in" data-category="commercial">
-                    <div class="project-image" style="background: linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%);">
-                        <span class="project-year">2021</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Алматы, Казахстан
-                            </span>
-                        </div>
-                        <i data-lucide="shopping-cart" style="width:64px;height:64px;color:rgba(255,255,255,0.15);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Гипермаркет «Магнум»</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="maximize" style="width:14px;height:14px;"></i> 8 500 м²</span>
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 0,4 кВ</span>
-                        </div>
-                        <p class="project-description">Электроснабжение торгового гипермаркета. Холодильное оборудование, кассовые зоны, освещение торгового зала, системы безопасности.</p>
-                        <div class="project-tags">
-                            <span class="tag">Торговля</span>
-                            <span class="tag">Revit</span>
-                            <span class="tag">Освещение</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p8')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 9 -->
-                <article class="project-card fade-in" data-category="energy">
-                    <div class="project-image" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
-                        <span class="project-year">2021</span>
-                        <div class="project-image-overlay">
-                            <span class="project-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                Бухара, Узбекистан
-                            </span>
-                        </div>
-                        <i data-lucide="wind" style="width:64px;height:64px;color:rgba(255,255,255,0.25);"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Ветровая установка 2 МВт</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="zap" style="width:14px;height:14px;"></i> 2 МВт</span>
-                            <span><i data-lucide="wind" style="width:14px;height:14px;"></i> 4 турбины</span>
-                        </div>
-                        <p class="project-description">Проектирование подключения ветровой электростанции к сети 10 кВ. Подстанция, линии электропередачи, системы защиты и автоматики.</p>
-                        <div class="project-tags">
-                            <span class="tag">Ветроэнергетика</span>
-                            <span class="tag">10 кВ</span>
-                            <span class="tag">АСУ ТП</span>
-                        </div>
-                        <div class="project-footer">
-                            <span class="project-status status-completed">
-                                <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-                                Завершен
-                            </span>
-                            <button class="project-link" onclick="openModal('p9')">
-                                Подробнее
-                                <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-
+        <div class="projects-grid" id="projectsGrid">
             <div class="no-results" id="noResults">
-                <i data-lucide="search-x" style="width:48px;height:48px;"></i>
-                <h3>Проекты не найдены</h3>
-                <p>Попробуйте выбрать другую категорию фильтра</p>
+                <i data-lucide="folder-open" style="width: 48px; height: 48px; stroke-width: 1.5;"></i>
+                <p>В данной категории проекты пока не опубликованы.</p>
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="cta-container">
-            <h2>Есть похожий <span>проект</span>?</h2>
-            <p>Расскажите о вашей задаче — подготовлю коммерческое предложение и сроки выполнения.</p>
-            <a href="index.html#contact" class="btn btn-primary btn-large">
-                <i data-lucide="mail" style="width:20px;height:20px;"></i>
-                Обсудить проект
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-logo">Sолодянкин<span>Sергей</span></div>
-                <div class="social-links">
-                    <a href="https://t.me/LordEnergy" target="_blank" rel="noopener" aria-label="Telegram"><i data-lucide="send" style="width:18px;height:18px;"></i></a>
-                    <a href="https://wa.me/99361247257" target="_blank" rel="noopener" aria-label="WhatsApp"><i data-lucide="message-circle" style="width:18px;height:18px;"></i></a>
-                    <a href="mailto:sselektrodesign@gmail.com" aria-label="Email"><i data-lucide="mail" style="width:18px;height:18px;"></i></a>
+    <div class="modal-backdrop" id="projectModal">
+        <div class="modal-window">
+            <button class="modal-close" onclick="closeModal()">
+                <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+            </button>
+            <div class="modal-grid" id="modalDynamicContent">
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 SS инжиниринг. Все права защищены. Проектирование электроснабжения.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ============================================================
-         MODAL
-    ============================================================ -->
-    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal-box" id="modalBox">
-            <!-- content injected by JS -->
         </div>
     </div>
 
     <script>
-        lucide.createIcons();
-
-        /* ── Navbar scroll ── */
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        /* ── Fade-in observer ── */
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        /* ── Filter ── */
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                let count = 0;
-                document.querySelectorAll('.project-card').forEach(card => {
-                    const show = filter === 'all' || card.dataset.category === filter;
-                    card.classList.toggle('hidden', !show);
-                    if (show) count++;
-                });
-                document.getElementById('noResults').classList.toggle('active', count === 0);
-            });
-        });
-
-        /* ── Mobile menu ── */
-        function toggleMobileMenu() {
-            const nav = document.querySelector('.nav-links');
-            const open = nav.style.display === 'flex';
-            Object.assign(nav.style, {
-                display: open ? 'none' : 'flex',
-                position: 'absolute', top: '100%', left: '0', right: '0',
-                flexDirection: 'column', background: 'white',
-                padding: '1rem 2rem', boxShadow: '0 10px 20px rgba(0,0,0,0.1)', gap: '1rem'
-            });
-        }
-
-        /* ══════════════════════════════════════════════
-           PROJECT DATA
-        ══════════════════════════════════════════════ */
+        // БАЗА ДАННЫХ ВАШИХ РЕАЛЬНЫХ ПРОЕКТОВ С ПУТЯМИ К КАРТИНКАМ НА GITHUB
         const projects = {
             p1: {
-                title: 'ЖК «Новые Горизонты»',
-                location: 'Москва, Россия',
-                year: '2024',
-                category: 'Жилой объект',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%)',
-                heroIcon: 'building',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #2c5282)', label: '🏗️' },
-                    { gradient: 'linear-gradient(135deg, #2c5282, #3b6fd4)', label: '📐' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #0f172a)', label: '⚡' },
-                ],
-                specs: [
-                    { label: 'Площадь', value: '45 000 м²' },
-                    { label: 'Напряжение', value: '0,4 кВ' },
-                    { label: 'Разделы', value: 'ЭМ, ЭО, МЗ' },
-                    { label: 'Срок', value: '18 дней' },
-                ],
-                description: 'Полный комплект проектной документации для 3-секционного жилого комплекса бизнес-класса. Проект включал разработку внутренних электрических сетей 0,4 кВ, систем рабочего и аварийного освещения, молниезащиты и заземления, а также слаботочных систем (СКС, видеонаблюдение, домофония). BIM-модель в Revit позволила выявить коллизии на этапе проектирования.',
-                tasks: [
-                    'Расчёт нагрузок и разработка однолинейных схем ВРУ по трём секциям',
-                    'Проектирование кабельных трасс и силовых цепей с учётом пожарной безопасности',
-                    'Расчёт и проектирование системы молниезащиты и заземления',
-                    'Разработка рабочего и аварийного освещения (расчёт в Dialux)',
-                    'Создание BIM-модели в Revit, координация со смежными разделами',
-                    'Сопровождение государственной экспертизы, получение положительного заключения',
-                ],
-                tags: ['Жилой объект', 'Revit / BIM', 'Dialux', '0,4 кВ', 'Молниезащита', 'Слаботочные системы'],
-            },
-            p2: {
-                title: 'Бизнес-центр «Алтын Асыр»',
-                location: 'Ашхабад, Туркменистан',
-                year: '2024',
-                category: 'Коммерческий объект',
+                title: 'Торгово-сервисный комплекс (2-я очередь)',
+                location: 'Аркадаг, Туркменистан',
+                year: '2026',
+                category: 'commercial',
                 status: 'progress',
                 statusText: 'В работе',
-                heroGradient: 'linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%)',
-                heroIcon: 'building-2',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #2c5282, #1e3a5f)', label: '🏢' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #0f172a)', label: '🔌' },
-                    { gradient: 'linear-gradient(135deg, #3b6fd4, #2c5282)', label: '📊' },
+                coverImage: 'assets/projects/arkadag-tc/thumb.jpg',
+                heroIcon: 'store',
+                images: [
+                    'assets/projects/arkadag-tc/img1.jpg', 'assets/projects/arkadag-tc/img2.jpg',
+                    'assets/projects/arkadag-tc/img3.jpg', 'assets/projects/arkadag-tc/img4.jpg',
+                    'assets/projects/arkadag-tc/img5.jpg', 'assets/projects/arkadag-tc/img6.jpg'
                 ],
                 specs: [
-                    { label: 'Площадь', value: '12 000 м²' },
-                    { label: 'Напряжение', value: '10 кВ' },
-                    { label: 'Разделы', value: 'ЭС, ЭМ, СКС' },
-                    { label: 'Этажей', value: '9' },
+                    { label: 'Объект', value: 'Söwda toplumy' },
+                    { label: 'Напряжение', value: '10 / 0,4 кВ' },
+                    { label: 'Разделы', value: 'ЭМ, ЭО, ЭС, МЗ' }
                 ],
-                description: 'Проектирование электроснабжения офисного центра класса А в деловом квартале Ашхабада. Объект предусматривает два независимых ввода 10 кВ с автоматическим резервированием, дизельную электростанцию (ДЭС) как третий источник питания, а также современную систему управления освещением и климатом (BMS).',
-                tasks: [
-                    'Разработка схемы внешнего электроснабжения 10 кВ, согласование ТУ',
-                    'Проектирование вводной подстанции 10/0,4 кВ с двумя силовыми трансформаторами',
-                    'Расчёт токов КЗ и подбор защитной аппаратуры (ETAP)',
-                    'Проектирование СКС и слаботочных систем (видеонаблюдение, СКУД, пожарная сигнализация)',
-                    'Разработка системы учёта электроэнергии АСКУЭ',
-                    'Подготовка технической документации для согласования с энергонадзором',
+                description: 'Проектирование комплексного внешнего и внутреннего электроснабжения торгово-сервисного комплекса в рамках застройки второй очереди первого «умного города» Аркадаг. Особый фокус сделан на интеграцию коммерческих систем учета в общую интеллектуальную сеть Smart City.',
+                tasks: ['Разработка внутренней распределительной сети 0,4 кВ для арендаторов', 'Расчет энергоэффективного основного и аварийного LED-освещения', 'Проектирование комплекса молниезащиты здания и заземляющих устройств'],
+                tags: ['Умный город', 'Аркадаг', 'LED-освещение', 'Внутренние сети']
+            },
+            p2: {
+                title: 'Коттеджный комплекс в НТЗ «Аваза»',
+                location: 'Аваза, Туркменистан',
+                year: '2025',
+                category: 'infrastructure',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/avaza-cottage/thumb.jpg',
+                heroIcon: 'home',
+                images: [
+                    'assets/projects/avaza-cottage/img1.jpg', 'assets/projects/avaza-cottage/img2.jpg',
+                    'assets/projects/avaza-cottage/img3.jpg', 'assets/projects/avaza-cottage/img4.jpg',
+                    'assets/projects/avaza-cottage/img5.jpg'
                 ],
-                tags: ['Офис', 'AutoCAD', 'СКС', 'АСКУЭ', '10 кВ', 'Резервирование', 'ETAP'],
+                specs: [
+                    { label: 'Тип объекта', value: 'Курортный комплекс' },
+                    { label: 'Сети', value: 'Наружные / Внутренние' },
+                    { label: 'Разделы', value: 'ЭС, ЭО, ЭМ' }
+                ],
+                description: 'Разработка проекта надежного электроснабжения премиального коттеджного поселка на побережье Каспийского моря. Реализованы жесткие технические требования к защите оборудования от агрессивной прибрежной среды и влажности.',
+                tasks: ['Трассировка подземных кабельных линий распределения в песчаных грунтах', 'Проектирование и расчет ландшафтно-декоративного освещения прогулочных зон', 'Расчет нагрузок и конфигурация комплектных трансформаторных подстанций (КТП)'],
+                tags: ['Аваза', 'Коттеджи', 'Ландшафтный свет', 'Наружные сети']
             },
             p3: {
-                title: 'Логистический центр «Юг»',
-                location: 'Ростов-на-Дону, Россия',
-                year: '2023',
-                category: 'Промышленный / Склад',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%)',
-                heroIcon: 'factory',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #0f172a)', label: '🏭' },
-                    { gradient: 'linear-gradient(135deg, #0f172a, #1e3a5f)', label: '📦' },
-                    { gradient: 'linear-gradient(135deg, #2c5282, #1e3a5f)', label: '⚙️' },
+                title: 'ТЦ для Ассоциации «Туркменмаллары»',
+                location: 'Ашхабад, ул. Гарашсызлык',
+                year: '2025',
+                category: 'commercial',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/turkmenmallary/thumb.jpg',
+                heroIcon: 'shopping-bag',
+                images: [
+                    'assets/projects/turkmenmallary/img1.jpg', 'assets/projects/turkmenmallary/img2.jpg',
+                    'assets/projects/turkmenmallary/img3.jpg', 'assets/projects/turkmenmallary/img4.jpg'
                 ],
                 specs: [
-                    { label: 'Площадь', value: '28 000 м²' },
-                    { label: 'Напряжение', value: '10 кВ' },
-                    { label: 'Класс склада', value: 'А' },
-                    { label: 'Срок', value: '22 дня' },
+                    { label: 'Заказчик', value: 'Ассоц. Туркменмаллары' },
+                    { label: 'Разделы', value: 'ЭМ (Силовое), ЭО' },
+                    { label: 'Резервирование', value: 'Автоматика АВР' }
                 ],
-                description: 'Проектирование электроснабжения складского комплекса класса А для крупного логистического оператора. Объект включает основной склад, административный корпус, зону экспедиции и внешние инженерные сети. Ключевое требование — надёжное резервное электроснабжение для обеспечения непрерывности хранения температурочувствительных грузов.',
-                tasks: [
-                    'Разработка схемы электроснабжения 10 кВ и проектирование РТП',
-                    'Проектирование ВРУ 0,4 кВ по всем блокам комплекса',
-                    'Расчёт и проектирование системы аварийного и эвакуационного освещения',
-                    'Внедрение АСКУЭ для почасового учёта потребления по зонам',
-                    'Проектирование системы молниезащиты протяжённых кровельных конструкций',
-                    'Разработка трасс наружных кабельных сетей и прокладка в ЛКК',
-                ],
-                tags: ['Склад', 'ETAP', 'АСКУЭ', '10 кВ', 'Аварийное освещение', 'Молниезащита'],
+                description: 'Полный комплекс проектных работ по внутреннему электрооборудованию и общему освещению здания крупного торгового центра по улице Гарашсызлык. Запроектированы высоконадежные вводно-распределительные устройства.',
+                tasks: ['Светотехнический расчет торговых залов в специализированной среде Dialux Evo', 'Проектирование систем щитового оборудования и автоматического ввода резерва', 'Расчет силовых линий технологического оборудования холодильных цехов'],
+                tags: ['Ашхабад', 'Торговый центр', 'Внутренние сети', 'ГРЩ']
             },
             p4: {
-                title: 'СЭС «Солнечная Долина»',
-                location: 'Краснодарский край, Россия',
-                year: '2023',
-                category: 'Альтернативная энергетика',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #d97706 0%, #f59e0b 100%)',
-                heroIcon: 'sun',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #d97706, #f59e0b)', label: '☀️' },
-                    { gradient: 'linear-gradient(135deg, #f59e0b, #fbbf24)', label: '🔆' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #2c5282)', label: '⚡' },
+                title: 'Гостиничный комплекс в г. Аркадаг',
+                location: 'Аркадаг, Ахалский велаят',
+                year: '2025',
+                category: 'commercial',
+                status: 'progress',
+                statusText: 'В работе',
+                coverImage: 'assets/projects/arkadag-hotel/thumb.jpg',
+                heroIcon: 'building',
+                images: [
+                    'assets/projects/arkadag-hotel/img1.jpg', 'assets/projects/arkadag-hotel/img2.jpg',
+                    'assets/projects/arkadag-hotel/img3.jpg', 'assets/projects/arkadag-hotel/img4.jpg',
+                    'assets/projects/arkadag-hotel/img5.jpg'
                 ],
                 specs: [
-                    { label: 'Мощность', value: '5 МВт' },
-                    { label: 'Панелей', value: '12 000 шт.' },
-                    { label: 'Напряжение', value: '10 кВ' },
-                    { label: 'Площадь поля', value: '8 га' },
+                    { label: 'Категория', value: 'Отель Премиум-класса' },
+                    { label: 'Питание', value: 'Встроенная КТП' },
+                    { label: 'Резерв мощности', value: 'Дизель-генератор (ДГУ)' }
                 ],
-                description: 'Проектирование наземной солнечной электростанции сетевого типа. Станция состоит из 12 000 двусторонних фотоэлектрических модулей, 20 строковых инверторов и центральной подстанции 10/0,4 кВ. Система мониторинга в реальном времени позволяет отслеживать выработку каждого инвертора и прогнозировать техническое обслуживание.',
-                tasks: [
-                    'Разработка схемы внешнего электроснабжения и присоединения к сети 10 кВ',
-                    'Проектирование подстанции 10/0,4 кВ с трансформатором 6,3 МВА',
-                    'Расчёт и компоновка инверторных блоков, подбор кабельных сечений DC/AC',
-                    'Проектирование системы мониторинга и диспетчеризации (SCADA)',
-                    'Разработка системы заземления и молниезащиты для открытой территории',
-                    'Согласование проекта с сетевой организацией и прохождение экспертизы',
-                ],
-                tags: ['Солнечная ЭС', 'AutoCAD', '10 кВ', 'SCADA', 'Инверторы', 'Альтернативная энергетика'],
+                description: 'Проектирование систем гарантированного бесперебойного электроснабжения многоэтажного гостиничного комплекса в новом административном центре. Интеграция ДГУ для обеспечения систем пожарной безопасности и лифтов по первой категории надежности.',
+                tasks: ['Проектирование встроенной закрытой трансформаторной подстанции', 'Расчет вертикальных магистральных кабельных трасс (стояков)', 'Интеграция схем управления аварийным и эвакуационным освещением здания'],
+                tags: ['Аркадаг', 'Гостиница', 'Резервное питание', 'Высокая надежность']
             },
             p5: {
-                title: 'ТЦ «Галерея Парк»',
-                location: 'Санкт-Петербург, Россия',
-                year: '2023',
-                category: 'Реконструкция',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%)',
-                heroIcon: 'store',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #2c5282, #1e3a5f)', label: '🏪' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #2c5282)', label: '💡' },
-                    { gradient: 'linear-gradient(135deg, #0f172a, #1e3a5f)', label: '🔧' },
+                title: 'Конноспортивный научно-производственный центр',
+                location: 'Туркменистан',
+                year: '2024',
+                category: 'industrial',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/atcylyk-center/thumb.jpg',
+                heroIcon: 'award',
+                images: [
+                    'assets/projects/atcylyk-center/img1.jpg', 'assets/projects/atcylyk-center/img2.jpg',
+                    'assets/projects/atcylyk-center/img3.jpg', 'assets/projects/atcylyk-center/img4.jpg'
                 ],
                 specs: [
-                    { label: 'Площадь', value: '18 000 м²' },
-                    { label: 'Напряжение', value: '0,4 кВ' },
-                    { label: 'Экономия', value: '38% энергии' },
-                    { label: 'Срок', value: '14 дней' },
+                    { label: 'Назначение', value: 'Научно-производственный' },
+                    { label: 'Специфика', value: 'Центр коневодства' },
+                    { label: 'Разделы', value: 'ЭМ, ЭО, Молниезащита' }
                 ],
-                description: 'Комплексная реконструкция системы электроснабжения действующего торгового центра без остановки работы. Заменены устаревшие панели ЩО-70, выполнен LED-ретрофит всего освещения (3 200 светильников), внедрена система автоматического управления освещением и учёта АСКУЭ. Проект позволил снизить потребление электроэнергии на 38%.',
-                tasks: [
-                    'Обследование существующей системы электроснабжения, разработка ТЗ',
-                    'Проектирование замены распределительных щитов ЩО-70 на современные ЩР',
-                    'Расчёт и проектирование LED-освещения для всех зон ТЦ (Dialux)',
-                    'Разработка системы АСКУЭ с почасовым учётом по арендаторам',
-                    'Проектирование системы автоматического управления освещением (DALI)',
-                    'Разработка ПОС для поэтапной замены оборудования без прерывания торговли',
-                ],
-                tags: ['Реконструкция', 'АСКУЭ', 'Dialux', 'LED', 'DALI', 'Энергосбережение'],
+                description: 'Специализированный проект электроснабжения комплекса зданий научно-производственного центра. Включает расчет нагрузок лабораторных блоков, силовых щитов вентиляции манежей и проектирование наружного прожекторного освещения открытых тренировочных зон.',
+                tasks: ['Расчет индивидуальной схемы молниезащиты протяженных конюшен и арен', 'Силовые распределительные сети технологических лабораторий', 'Проектирование наружных сетей освещения территории и полей тренировок'],
+                tags: ['Научный центр', 'Коневодство', 'Молниезащита', 'Спец-объект']
             },
             p6: {
-                title: 'Текстильная фабрика «Узтекстиль»',
-                location: 'Ташкент, Узбекистан',
-                year: '2022',
-                category: 'Промышленный объект',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%)',
-                heroIcon: 'cog',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #0f172a, #1e3a5f)', label: '🏭' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #2c5282)', label: '⚙️' },
-                    { gradient: 'linear-gradient(135deg, #2c5282, #1e3a5f)', label: '🔩' },
+                title: 'Завод по производству глицирризиновой кислоты',
+                location: 'Туркменабад, Лебапский велаят',
+                year: '2025',
+                category: 'industrial',
+                status: 'progress',
+                statusText: 'В работе',
+                coverImage: 'assets/projects/buyan-plant/thumb.jpg',
+                heroIcon: 'factory',
+                images: [
+                    'assets/projects/buyan-plant/img1.jpg', 'assets/projects/buyan-plant/img2.jpg',
+                    'assets/projects/buyan-plant/img3.jpg', 'assets/projects/buyan-plant/img4.jpg',
+                    'assets/projects/buyan-plant/img5.jpg', 'assets/projects/buyan-plant/img6.jpg'
                 ],
                 specs: [
-                    { label: 'Площадь', value: '35 000 м²' },
-                    { label: 'Напряжение', value: '10 кВ' },
-                    { label: 'Разделы', value: 'ЭС, ЭМ, ЭО, МЗ' },
-                    { label: 'Срок', value: '30 дней' },
+                    { label: 'Объект', value: 'АПК «Buýan»' },
+                    { label: 'Мощность', value: '390 тонн сырья / год' },
+                    { label: 'Исполнение', value: 'Взрывозащищенное (Ex)' }
                 ],
-                description: 'Полный цикл электропроектирования нового производственного предприятия по выпуску текстильной продукции. Особенность объекта — наличие высокомощных технологических линий (ткацкие станки, красильные машины) с нелинейной нагрузкой, требующей специального подхода к расчёту токов КЗ, компенсации реактивной мощности и защите оборудования.',
-                tasks: [
-                    'Расчёт токов КЗ и проверка термической стойкости кабельных линий (ETAP)',
-                    'Проектирование компенсации реактивной мощности (батареи конденсаторов)',
-                    'Проектирование силового электроснабжения производственных линий',
-                    'Разработка схем управления и защиты электродвигателей',
-                    'Расчёт и проектирование промышленного освещения цехов (Dialux Evo)',
-                    'Проектирование системы заземления и молниезащиты производственных корпусов',
-                ],
-                tags: ['Промышленность', 'ETAP', 'Расчёт КЗ', '10 кВ', 'Компенсация РМ', 'Освещение цехов'],
+                description: 'Масштабное проектирование систем промышленного электроснабжения завода по переработке солодкового корня для Министерства здравоохранения. Высокие требования безопасности из-за наличия зон с выделением горючей мелкодисперсной растительной пыли и химической экстракции.',
+                tasks: ['Расчет электронагрузок технологических линий сушки и экстракции', 'Проектирование магистральных шинопроводов и вводных шкафов ВРУ', 'Подбор и расстановка взрывозащищенного электрооборудования степени IP65/IP66'],
+                tags: ['Промышленность', 'Туркменабад', 'Взрывозащита', 'Фармацевтика']
             },
             p7: {
-                title: 'Коттеджный поселок «Багтыярлык»',
-                location: 'Ашхабад, Туркменистан',
-                year: '2022',
-                category: 'Жилой объект',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%)',
-                heroIcon: 'home',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #2c5282)', label: '🏡' },
-                    { gradient: 'linear-gradient(135deg, #2c5282, #3b6fd4)', label: '🌳' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #0f172a)', label: '🔦' },
+                title: 'Электроснабжение парковой зоны в Ашхабаде',
+                location: 'Ашхабад (пр. Гарашсызлык / Битарап)',
+                year: '2024',
+                category: 'infrastructure',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/ashgabat-park/thumb.jpg',
+                heroIcon: 'trees',
+                images: [
+                    'assets/projects/ashgabat-park/img1.jpg', 'assets/projects/ashgabat-park/img2.jpg',
+                    'assets/projects/ashgabat-park/img3.jpg', 'assets/projects/ashgabat-park/img4.jpg'
                 ],
                 specs: [
-                    { label: 'Домов', value: '120 шт.' },
-                    { label: 'Напряжение', value: '0,4 кВ' },
-                    { label: 'Разделы', value: 'НС, ЭМ, ЭО' },
-                    { label: 'Площадь поселка', value: '24 га' },
+                    { label: 'Площадь', value: 'Масштабный городской парк' },
+                    { label: 'Управление', value: 'Автоматика ШНО' },
+                    { label: 'Сети', value: 'Кабельные линии 0,4 кВ' }
                 ],
-                description: 'Проектирование комплексной системы электроснабжения коттеджного поселка премиум-класса. Каждый дом площадью 350–600 м² обеспечивается индивидуальным подключением. Наружные кабельные сети выполнены подземным способом прокладки. Система уличного освещения с датчиками движения и таймерами обеспечивает безопасность и экономию энергии.',
-                tasks: [
-                    'Разработка схемы наружных электрических сетей 0,4 кВ поселка',
-                    'Проектирование трансформаторной подстанции 2×630 кВА (КТП)',
-                    'Расчёт нагрузок и проектирование вводных устройств 120 коттеджей',
-                    'Проектирование подземных кабельных линий с учётом ландшафта',
-                    'Разработка системы уличного и ландшафтного освещения',
-                    'Согласование ТУ и проекта с сетевой организацией Туркменистана',
-                ],
-                tags: ['Коттеджи', 'Наружные сети', 'AutoCAD', 'КТП', 'Уличное освещение', '0,4 кВ'],
+                description: 'Разработка рабочей документации по наружным кабельным сетям 0,4 кВ и декоративно-ландшафтному освещению паркового комплекса в центральной части Ашхабада. Предусмотрена полная автоматизация включения освещения по астрономическому времени.',
+                tasks: ['Светотехнический расчет освещенности прогулочных дорожек и аллей', 'Проектирование электропитания насосных станций фонтанов и систем автополива', 'Разработка шкафов наружного освещения (ШНО) с контроллерами управления'],
+                tags: ['Ашхабад', 'Парк', 'Ландшафтный свет', 'Автоматизация ШНО']
             },
             p8: {
-                title: 'Гипермаркет «Магнум»',
-                location: 'Алматы, Казахстан',
-                year: '2021',
-                category: 'Коммерческий объект',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #2c5282 0%, #1e3a5f 100%)',
-                heroIcon: 'shopping-cart',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #2c5282, #1e3a5f)', label: '🛒' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #0f172a)', label: '💡' },
-                    { gradient: 'linear-gradient(135deg, #0f172a, #2c5282)', label: '❄️' },
+                title: 'Энергоснабжение тепличного комплекса 10 000 га',
+                location: 'Куняургенч, Дашогузский велаят',
+                year: '2025',
+                category: 'energy',
+                status: 'progress',
+                statusText: 'В работе',
+                coverImage: 'assets/projects/greenhouse-10k/thumb.jpg',
+                heroIcon: 'zap',
+                images: [
+                    'assets/projects/greenhouse-10k/img1.jpg', 'assets/projects/greenhouse-10k/img2.jpg',
+                    'assets/projects/greenhouse-10k/img3.jpg', 'assets/projects/greenhouse-10k/img4.jpg'
                 ],
                 specs: [
-                    { label: 'Площадь', value: '8 500 м²' },
-                    { label: 'Напряжение', value: '0,4 кВ' },
-                    { label: 'Разделы', value: 'ЭМ, ЭО, СС' },
-                    { label: 'Срок', value: '12 дней' },
+                    { label: 'Масштаб объекта', value: '10 000 Гектар' },
+                    { label: 'Напряжение', value: 'Высокое 10 кВ' },
+                    { label: 'Расчет сети', value: 'Потери и компенсация' }
                 ],
-                description: 'Проектирование электроснабжения крупного продуктового гипермаркета. Специфика объекта — значительная нагрузка от холодильного и морозильного оборудования (торговые острова, холодильные камеры), требующего непрерывного электроснабжения и автоматического резервирования. Отдельно проработана схема питания кассовых зон и систем безопасности.',
-                tasks: [
-                    'Расчёт нагрузок с учётом холодильного оборудования и пусковых токов',
-                    'Проектирование ВРУ и распределительных щитков по зонам гипермаркета',
-                    'Разработка схем питания холодильного оборудования с АВР',
-                    'Расчёт и проектирование торгового и акцентного освещения (Dialux)',
-                    'Проектирование системы охранного видеонаблюдения и пожарной сигнализации',
-                    'Разработка системы розеточной сети для кассовых зон и офисов',
-                ],
-                tags: ['Торговля', 'Revit', 'Освещение', 'Холодильное оборудование', 'АВР', 'Dialux'],
+                description: 'Крупный инфраструктурный энергетический проект распределительной сети 10 кВ для энергоснабжения гигантского промышленного агрокомплекса в Дашогузском велаяте. Ключевая задача — передача большой мощности на колоссальные расстояния.',
+                tasks: ['Трассировка воздушных и кабельных линий высокого напряжения 10 кВ', 'Оптимальный расчет центров нагрузок для посадки понижающих подстанций КТП', 'Разработка систем компенсации реактивной мощности (УКРМ) для стабильности сети'],
+                tags: ['Энергетика', 'Высокое напряжение', 'Дашогуз', 'Агрокомплекс']
             },
             p9: {
-                title: 'Ветровая установка 2 МВт',
-                location: 'Бухара, Узбекистан',
-                year: '2021',
-                category: 'Альтернативная энергетика',
-                status: 'completed',
-                statusText: 'Завершён',
-                heroGradient: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
-                heroIcon: 'wind',
-                thumbs: [
-                    { gradient: 'linear-gradient(135deg, #059669, #10b981)', label: '🌬️' },
-                    { gradient: 'linear-gradient(135deg, #10b981, #34d399)', label: '🔋' },
-                    { gradient: 'linear-gradient(135deg, #1e3a5f, #2c5282)', label: '⚡' },
+                title: 'Реконструкция спорткомплекса «Аваза»',
+                location: 'Аваза, Туркменистан',
+                year: '2024',
+                category: 'infrastructure',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/avaza-sport/thumb.jpg',
+                heroIcon: 'activity',
+                images: [
+                    'assets/projects/avaza-sport/img1.jpg', 'assets/projects/avaza-sport/img2.jpg',
+                    'assets/projects/avaza-sport/img3.jpg', 'assets/projects/avaza-sport/img4.jpg'
                 ],
                 specs: [
-                    { label: 'Мощность', value: '2 МВт' },
-                    { label: 'Турбин', value: '4 шт.' },
-                    { label: 'Напряжение', value: '10 кВ' },
-                    { label: 'Срок', value: '25 дней' },
+                    { label: 'Тип работ', value: 'Модернизация и дизайн' },
+                    { label: 'Главный ввод', value: 'Реконструкция ГРЩ' },
+                    { label: 'Подсветка', value: 'Архитектурный фасад' }
                 ],
-                description: 'Проектирование системы выдачи мощности ветровой электростанции в энергосистему Узбекистана. Четыре ветрогенератора мощностью 500 кВт каждый через повышающие трансформаторы 0,69/10 кВ подключаются к общей шине 10 кВ и далее к подстанции энергосистемы. Система защиты и автоматики разработана с учётом требований по противоаварийной автоматике.',
-                tasks: [
-                    'Разработка однолинейной схемы выдачи мощности ВЭС 2 МВт',
-                    'Проектирование подстанции 10/35 кВ для присоединения к энергосистеме',
-                    'Расчёт токов КЗ и уставок релейной защиты (ETAP)',
-                    'Проектирование кабельных линий между турбинами и подстанцией',
-                    'Разработка системы противоаварийной автоматики (ПА) и телемеханики',
-                    'Согласование проекта с национальным оператором энергосистемы',
-                ],
-                tags: ['Ветроэнергетика', '10 кВ', 'АСУ ТП', 'ETAP', 'Релейная защита', 'Телемеханика'],
+                description: 'Проект полной модернизации распределительных сетей и создания современной концепции спортивного и архитектурно-художественного освещения фасадов спортивного комплекса национальной туристической зоны.',
+                tasks: ['Полный электроаудит мощностей и замена вводных панелей ГРЩ', 'Проектирование динамической управляемой LED-подсветки фасада здания', 'Интеграция систем управления световыми сценариями по протоколу DALI'],
+                tags: ['Реконструкция', 'Аваза', 'Спорткомплекс', 'Фасадный свет']
             },
+            p10: {
+                title: 'Реконструкция автомагистрали Ашхабад-Гёкдепе',
+                location: 'Аркадаг, 2-я очередь',
+                year: '2025',
+                category: 'infrastructure',
+                status: 'progress',
+                statusText: 'В работе',
+                coverImage: 'assets/projects/road-gokdepe/thumb.jpg',
+                heroIcon: 'milestone',
+                images: [
+                    'assets/projects/road-gokdepe/img1.jpg', 'assets/projects/road-gokdepe/img2.jpg',
+                    'assets/projects/road-gokdepe/img3.jpg', 'assets/projects/road-gokdepe/img4.jpg'
+                ],
+                specs: [
+                    { label: 'Участок дороги', value: 'Бабарап - Akgoňur' },
+                    { label: 'Линейные сети', value: '0,4 кВ / 10 кВ' },
+                    { label: 'Магистраль', value: 'Повышенная интенсивность' }
+                ],
+                description: 'Проектирование переустройства, выноса и нового строительства электрических сетей в рамках расширения и масштабной реконструкции шоссе Ашхабад-Гёкдепе (проспект Гурбансолтан эдже).',
+                tasks: ['Разработка чертежей выноса кабелей из зоны расширения дорожного полотна', 'Расчет дорожной освещенности, шага опор и коэффициента слепимости светильников', 'Проектирование наружных сетей питания светофорных объектов и дорожных указателей'],
+                tags: ['Дорожное освещение', 'Линейные сети', 'Аркадаг', 'Реконструкция']
+            },
+            p11: {
+                title: 'ТРЦ в жилом комплексе «Гуртлы»',
+                location: 'Ашхабад, ЖК Гуртлы',
+                year: '2025',
+                category: 'commercial',
+                status: 'progress',
+                statusText: 'В работе',
+                coverImage: 'assets/projects/gurtly-trc/thumb.jpg',
+                heroIcon: 'store',
+                images: [
+                    'assets/projects/gurtly-trc/img1.jpg', 'assets/projects/gurtly-trc/img2.jpg',
+                    'assets/projects/gurtly-trc/img3.jpg', 'assets/projects/gurtly-trc/img4.jpg'
+                ],
+                specs: [
+                    { label: 'Класс объекта', value: 'Торгово-развлекательный' },
+                    { label: 'Вводные щиты', value: 'Секционированные ГРЩ' },
+                    { label: 'Проектирование', value: 'ЭМ, ЭО, ЭОГ' }
+                ],
+                description: 'Разработка проектной документации по внутреннему силовому электрооборудованию и внутреннему освещению для крупного строящегося ТРЦ в жилом комплексе Гуртлы.',
+                tasks: ['Сбор и расчет электрических нагрузок по техническим условиям арендаторов', 'Проектирование дизайнерского освещения атриумов и галерей общего доступа', 'Разработка систем гарантированного аварийного и эвакуационного освещения'],
+                tags: ['Ашхабад', 'ТРЦ', 'Гуртлы', 'Внутренние сети']
+            },
+            p12: {
+                title: 'Спиртовой завод (Цех кормопроизводства)',
+                location: 'Ак бугдай этрап, Ахалский велаят',
+                year: '2024',
+                category: 'industrial',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/spirit-plant/thumb.jpg',
+                heroIcon: 'factory',
+                images: [
+                    'assets/projects/spirit-plant/img1.jpg', 'assets/projects/spirit-plant/img2.jpg',
+                    'assets/projects/spirit-plant/img3.jpg', 'assets/projects/spirit-plant/img4.jpg'
+                ],
+                specs: [
+                    { label: 'Общая мощность завода', value: 'Свыше 1.3 млн дал/год' },
+                    { label: 'Текущий этап', value: '1-я очередь (Переработка)' },
+                    { label: 'Раздел проекта', value: 'ЭМ, ЭО, Молниезащита' }
+                ],
+                description: 'Электротехническое проектирование первой очереди крупного спиртового промышленного комплекса — цеха по переработке барды (отходов основного производства) в высококачественные сухие корма. Реализована защита оборудования.',
+                tasks: ['Проектирование силового электрооборудования автоматических конвейерных линий', 'Расчет системы заземления и молниезащиты производственного здания цеха', 'Подбор пускорегулирующей аппаратуры защиты электродвигателей от перегрузок'],
+                tags: ['Промышленность', 'Пищевое производство', 'Ак бугдай', 'Молниезащита']
+            },
+            p13: {
+                title: 'Промбаза и логистический комплекс 10 га',
+                location: 'Ак бугдай этрап, им. М. Сопыева',
+                year: '2025',
+                category: 'industrial',
+                status: 'progress',
+                statusText: 'В работе',
+                coverImage: 'assets/projects/logistic-10ha/thumb.jpg',
+                heroIcon: 'warehouse',
+                images: [
+                    'assets/projects/logistic-10ha/img1.jpg', 'assets/projects/logistic-10ha/img2.jpg',
+                    'assets/projects/logistic-10ha/img3.jpg', 'assets/projects/logistic-10ha/img4.jpg'
+                ],
+                specs: [
+                    { label: 'Территория базы', value: '10 Гектар' },
+                    { label: 'Заказчик', value: 'ХО Д. Деряева' },
+                    { label: 'Сети распределения', value: 'КЛ-0,4 кВ наружные' }
+                ],
+                description: 'Комплексный электропроект строительства крупной промышленно-производственной базы со складскими терминалами высокого хранения. Организовано надежное деление мощностей между объектами.',
+                tasks: ['Проектирование распределительных наружных сетей 0,4 кВ между складами', 'Расчет внутреннего освещения складов светодиодными светильниками типа "High Bay"', 'Проектирование силовых линий систем промышленной вентиляции и кондиционирования'],
+                tags: ['Логистика', 'Склады', 'Наружные сети', 'Промышленность']
+            },
+            p14: {
+                title: 'Комплекс насосных станций 1 и 2 подъёма',
+                location: 'Туркменистан',
+                year: '2025',
+                category: 'hydro',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/pumping-stations/thumb.jpg',
+                heroIcon: 'droplet',
+                images: [
+                    'assets/projects/pumping-stations/img1.jpg', 'assets/projects/pumping-stations/img2.jpg',
+                    'assets/projects/pumping-stations/img3.jpg', 'assets/projects/pumping-stations/img4.jpg',
+                    'assets/projects/pumping-stations/img5.jpg'
+                ],
+                specs: [
+                    { label: 'Объекты в фокусе', value: 'Насосные 1-го и 2-го подъема' },
+                    { label: 'Резервуары', value: 'Объем 40 000 м³' },
+                    { label: 'Назначение', value: 'Ирригационные системы' }
+                ],
+                description: 'Высокотехнологичный промышленный проект электроснабжения и комплексной автоматизации гидротехнических сооружений: водозаборного узла, отстойных дноуглубительных бассейнов оросительной сети и станций перекачки воды.',
+                tasks: ['Проектирование силового электрооборудования мощных высоковольтных насосов', 'Внедрение преобразователей частоты (ЧРП) для плавного пуска и экономии ресурсов', 'Разработка систем автоматики контроля уровней воды и защиты оборудования от сухого хода'],
+                tags: ['Гидротехника', 'Насосные станции', 'Автоматизация', 'АСУ ТП']
+            },
+            p15: {
+                title: 'Реконструкция водопроводного узла и дюкеров',
+                location: 'Туркменистан',
+                year: '2024',
+                category: 'hydro',
+                status: 'done',
+                statusText: 'Готов',
+                coverImage: 'assets/projects/water-node/thumb.jpg',
+                heroIcon: 'wrench',
+                images: [
+                    'assets/projects/water-node/img1.jpg', 'assets/projects/water-node/img2.jpg',
+                    'assets/projects/water-node/img3.jpg', 'assets/projects/water-node/img4.jpg'
+                ],
+                specs: [
+                    { label: 'Инфраструктура', value: 'Водоузел / Дюкерные переходы' },
+                    { label: 'Защита сетей', value: 'ЭХЗ (Катодная электрохимическая)' },
+                    { label: 'Оболочки оборудования', value: 'Герметичные контуры IP68' }
+                ],
+                description: 'Проектирование технического перевооружения и модернизации электрооборудования центрального узла водоснабжения, а также разработка электротехнической защиты подводных переходов (дюкеров) магистральных трубопроводов.',
+                tasks: ['Проектирование станций катодной защиты для предотвращения коррозии труб', 'Обновление силовых панелей распределения и интеграция в верхний уровень АСУ', 'Герметичная прокладка кабельных трасс управления задвижками в смотровых колодцах'],
+                tags: ['Водоснабжение', 'Дюкер', 'ЭХЗ', 'Реконструкция']
+            }
         };
 
-        /* ══════════════════════════════════════════════
-           MODAL LOGIC
-        ══════════════════════════════════════════════ */
+        let currentProjectImages = [];
         let currentThumb = 0;
 
-        function openModal(id) {
-            const p = projects[id];
-            if (!p) return;
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('projectsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            // Удаляем старые карточки, оставляя только блок No Results
+            const cards = grid.querySelectorAll('.project-card');
+            cards.forEach(card => card.remove());
+
+            let visibleCount = 0;
+
+            for (const [id, project] of Object.entries(projects)) {
+                if (filter === 'all' || project.category === filter) {
+                    visibleCount++;
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.setAttribute('onclick', `openModal('${id}')`);
+
+                    const statusClass = project.status === 'done' ? 'status-done' : 'status-progress';
+
+                    card.innerHTML = `
+                        <div class="card-hero">
+                            <img src="${project.coverImage}" alt="${project.title}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 400 200%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%231e3a5f%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2216%22>${project.specs[0].value}</text></svg>'">
+                            <div class="card-status ${statusClass}">
+                                <span class="status-dot"></span>
+                                ${project.statusText}
+                            </div>
+                            <div class="card-icon-wrapper">
+                                <i data-lucide="${project.heroIcon}" style="width:18px;height:18px;"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <h3>${project.title}</h3>
+                                <div class="card-meta">
+                                    <span><i data-lucide="map-pin" style="width:13px;height:13px;"></i>${project.location}</span>
+                                    <span><i data-lucide="calendar" style="width:13px;height:13px;"></i>${project.year}</span>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                ${project.tags.map(tag => `<span class="card-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+            }
+
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            lucide.createIcons();
+        }
+
+        // ОБНОВЛЕННАЯ ФУНКЦИЯ ДИНАМИЧЕСКОЙ СБОРКИ МОДАЛЬНОГО ОКНА С 4-6 ФОТОГРАФИЯМИ
+        window.openModal = function(id) {
+            const project = projects[id];
+            if (!project) return;
+
+            currentProjectImages = project.images || [];
             currentThumb = 0;
 
-            const thumbsHtml = p.thumbs.map((t, i) =>
-                `<div class="modal-thumb ${i === 0 ? 'active' : ''}"
-                      style="background:${t.gradient}"
-                      onclick="selectThumb(this, ${i}, '${p.heroGradient}', '${p.heroIcon}')">${t.label}</div>`
-            ).join('');
-
-            const specsHtml = p.specs.map(s =>
-                `<div class="spec-card"><div class="spec-label">${s.label}</div><div class="spec-value">${s.value}</div></div>`
-            ).join('');
-
-            const tasksHtml = p.tasks.map(t =>
-                `<li><span class="task-bullet"></span>${t}</li>`
-            ).join('');
-
-            const tagsHtml = p.tags.map(t =>
-                `<span class="modal-tag">${t}</span>`
-            ).join('');
-
-            const statusClass = p.status === 'completed' ? 'completed' : 'progress';
-            const statusIcon  = p.status === 'completed' ? 'check-circle' : 'clock';
-
-            document.getElementById('modalBox').innerHTML = `
-                <div class="modal-hero" style="background:${p.heroGradient}" id="modalHero">
-                    <span class="modal-hero-badge">${p.year}</span>
-                    <button class="modal-close-btn" onclick="closeModal()" aria-label="Закрыть">
-                        <i data-lucide="x" style="width:18px;height:18px;"></i>
-                    </button>
-                    <i data-lucide="${p.heroIcon}" id="modalHeroIcon" style="width:80px;height:80px;color:rgba(255,255,255,0.18);"></i>
-                </div>
-                <div class="modal-thumbs">${thumbsHtml}</div>
-                <div class="modal-body">
-                    <div class="modal-top-row">
-                        <div>
-                            <h2 class="modal-title" id="modalTitle">${p.title}</h2>
-                            <p class="modal-location">
-                                <i data-lucide="map-pin" style="width:14px;height:14px;"></i>
-                                ${p.location} &nbsp;·&nbsp; ${p.category}
-                            </p>
-                        </div>
-                        <span class="modal-status-badge ${statusClass}">
-                            <span class="modal-status-dot"></span>
-                            ${p.statusText}
-                        </span>
+            const dynamicContainer = document.getElementById('modalDynamicContent');
+            
+            // Генерируем HTML-разметку для внутренних окон модалки
+            dynamicContainer.innerHTML = `
+                <div class="modal-gallery-side">
+                    <div class="modal-main-hero" id="modalMainHeroBox">
+                        <img id="modalMainImage" src="${currentProjectImages[0]}" alt="${project.title}" onerror="showMainFallback('${project.specs[0].value}')">
                     </div>
-                    <div class="modal-specs">${specsHtml}</div>
-                    <div class="modal-section-label">Описание проекта</div>
-                    <p class="modal-desc-text">${p.description}</p>
-                    <div class="modal-section-label">Выполненные работы</div>
-                    <ul class="modal-tasks">${tasksHtml}</ul>
-                    <div class="modal-tags">${tagsHtml}</div>
-                    <div class="modal-footer-row">
-                        <span class="modal-year-info">Год выполнения: ${p.year}</span>
-                        <a href="index.html#contact" class="modal-cta-btn">
+                    <div class="modal-thumbs-grid">
+                        ${currentProjectImages.map((imgUrl, idx) => `
+                            <div class="modal-thumb ${idx === 0 ? 'active' : ''}" onclick="selectModalThumb(this, ${idx}, '${project.specs[0].value}')">
+                                <img src="${imgUrl}" alt="Миниатюра ${idx + 1}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2270%22 height=%2260%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23cbd5e1%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23475569%22 font-family=%22sans-serif%22 font-size=%2210%22>№${idx+1}</text></svg>'">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div class="modal-content-side">
+                    <div class="modal-header">
+                        <h2>${project.title}</h2>
+                        <div id="modalStatus" class="status-badge status-${project.status}">
+                            <span class="status-dot"></span>${project.statusText}
+                        </div>
+                    </div>
+                    
+                    <div class="modal-specs">
+                        ${project.specs.map(spec => `
+                            <div class="spec-item">
+                                <span class="spec-label">${spec.label}</span>
+                                <span class="spec-value">${spec.value}</span>
+                            </div>
+                        `).join('')}
+                        <div class="spec-item">
+                            <span class="spec-label">Локация</span>
+                            <span class="spec-value">${project.location}</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Год реализации</span>
+                            <span class="spec-value">${project.year}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section-title">
+                        <i data-lucide="file-text" style="width:14px;height:14px;color:var(--accent);"></i> Описание проекта
+                    </div>
+                    <p class="modal-desc">${project.description}</p>
+                    
+                    <div class="modal-section-title">
+                        <i data-lucide="check-circle-2" style="width:14px;height:14px;color:var(--success);"></i> Проектные задачи
+                    </div>
+                    <ul class="modal-tasks">
+                        ${project.tasks.map(task => `<li>${task}</li>`).join('')}
+                    </ul>
+                    
+                    <div class="modal-footer">
+                        <div style="display:flex; flex-direction:column;">
+                            <span style="font-size:11px; text-transform:uppercase; color:var(--gray); font-weight:600;">Разделы проекта</span>
+                            <span style="font-size:14px; font-weight:600; color:var(--primary);">${project.specs.find(s => s.label === 'Разделы' || s.label === 'Раздел проекта')?.value || 'ЭМ, ЭО, ЭС'}</span>
+                        </div>
+                        <a href="mailto:ваш-email@example.com?subject=Запрос по проекту: ${encodeURIComponent(project.title)}" class="modal-cta-btn">
                             <i data-lucide="mail" style="width:16px;height:16px;"></i>
                             Обсудить похожий проект
                         </a>
@@ -1224,33 +644,57 @@
             document.getElementById('projectModal').classList.add('active');
             document.body.style.overflow = 'hidden';
             lucide.createIcons();
-        }
+        };
 
-        function selectThumb(el, idx, heroGradient, heroIcon) {
+        // Логика клика по миниатюрам внутри модалки
+        window.selectModalThumb = function(el, idx, fallbackText) {
             document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
             currentThumb = idx;
-        }
+            
+            const mainImg = document.getElementById('modalMainImage');
+            mainImg.style.opacity = '0';
+            
+            setTimeout(() => {
+                mainImg.src = currentProjectImages[idx];
+                mainImg.style.opacity = '1';
+            }, 150);
+        };
 
-        function closeModal() {
+        // Заглушка, если основная картинка еще не добавлена в репозиторийassets/projects/
+        window.showMainFallback = function(text) {
+            const mainImg = document.getElementById('modalMainImage');
+            mainImg.src = `data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 440 340%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%231e3a5f%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-family=%22sans-serif%22 font-size=%2216%22>${text} (Фото ${currentThumb + 1})</text></svg>`;
+        };
+
+        window.closeModal = function() {
             document.getElementById('projectModal').classList.remove('active');
             document.body.style.overflow = '';
-        }
+        };
 
-        /* Close on backdrop click */
+        // Инициализация фильтров при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    renderProjects(this.getAttribute('data-filter'));
+                });
+            });
+        });
+
+        // Закрытие модального окна по клику на фон
         document.getElementById('projectModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        /* Close on Escape */
+        // Закрытие модального окна по кнопке Escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeModal();
         });
-
-        /* Stagger animation on filter */
-        const style = document.createElement('style');
-        style.textContent = `@keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }`;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
