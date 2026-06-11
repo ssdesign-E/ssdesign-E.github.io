@@ -128,11 +128,11 @@
         .lightbox-backdrop.active { opacity: 1; pointer-events: auto; }
         
         .lightbox-container { max-width: 95vw; max-height: 90vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 12px; }
-        .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; transform: scale(0.95); transition: transform 0.3s ease; cursor: grab; }
+        .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; transform: scale(0.95); transition: transform 0.1s ease; cursor: grab; }
         .lightbox-backdrop.active .lightbox-image { transform: scale(1); }
         .lightbox-image:active { cursor: grabbing; }
         
-        .lightbox-close { position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); cursor: pointer; transition: all 0.2s ease; }
+        .lightbox-close { position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); cursor: pointer; transition: all 0.2s ease; z-index: 210; }
         .lightbox-close:hover { background: rgba(255,255,255,0.2); transform: scale(1.05); }
 
         /* Responsive Windows */
@@ -189,13 +189,12 @@
         </div>
     </div>
 
-    <div class="lightbox-backdrop" id="lightboxModal" onclick="if(e.target === this) closeLightbox()">
+    <div class="lightbox-backdrop" id="lightboxModal" onclick="if(event.target === this) closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">
             <i data-lucide="x" style="width: 24px; height: 24px;"></i>
         </button>
         <div class="lightbox-container" onclick="event.stopPropagation()">
-            .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; transition: transform 0.2s ease; cursor: grab; }
-            .lightbox-image:active { cursor: grabbing; }
+            <img class="lightbox-image" id="lightboxImg" src="" alt="Детальный просмотр чертежа">
         </div>
     </div>
 
@@ -533,7 +532,7 @@
                     { label: 'Оболочки оборудования', value: 'Герметичные контуры IP68' }
                 ],
                 description: 'Проектирование технического перевооружения и модернизации электрооборудования центрального узла водоснабжения, а также разработка электротехнической защиты подводных переходов (дюкеров) магистральных трубопроводов.',
-                tasks: ['Проектирование станций катодной защиты для предотвращения коррозии труб', 'Обновление силовых панелей распределения и интеграция в верхний уровень АСУ', 'Герметичная прокладка кабельных трасс управления задвижками в смотровых колодцах'],
+                tasks: ['Проектирование станций катодной защиты для предотвращения коррозии труб', 'Обновление силовых панели распределения и интеграция в верхний уровень АСУ', 'Герметичная прокладка кабельных трасс управления задвижками в смотровых колодцах'],
                 tags: ['Водоснабжение', 'Дюкер', 'ЭХЗ', 'Реконструкция']
             }
         };
@@ -775,6 +774,33 @@
             if (isDragging) {
                 isDragging = false;
                 lightboxImg.style.transition = 'transform 0.1s ease'; // Возвращаем легкую плавность
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    renderProjects(this.getAttribute('data-filter'));
+                });
+            });
+        });
+
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if(document.getElementById('lightboxModal').classList.contains('active')) {
+                    closeLightbox();
+                } else {
+                    closeModal();
+                }
             }
         });
     </script>
