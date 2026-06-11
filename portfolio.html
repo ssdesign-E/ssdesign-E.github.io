@@ -189,12 +189,13 @@
         </div>
     </div>
 
-    <div class="lightbox-backdrop" id="lightboxModal" onclick="closeLightbox()">
-        <button class="lightbox-close">
+    <div class="lightbox-backdrop" id="lightboxModal" onclick="if(e.target === this) closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">
             <i data-lucide="x" style="width: 24px; height: 24px;"></i>
         </button>
-        <div class="lightbox-container" onclick="e.stopPropagation()">
-            <img class="lightbox-image" id="lightboxImg" src="" alt="Детальный просмотр чертежа">
+        <div class="lightbox-container" onclick="event.stopPropagation()">
+            .lightbox-image { max-width: 100%; max-height: 90vh; object-fit: contain; transition: transform 0.2s ease; cursor: grab; }
+            .lightbox-image:active { cursor: grabbing; }
         </div>
     </div>
 
@@ -697,16 +698,26 @@
             }
         };
 
-        /* ЛОГИКА ФУНКЦИОНИРОВАНИЯ LIGHTBOX (УВЕЛИЧЕНИЯ КАРТИНКИ) */
+        /* ЛОГИКА ФУНКЦИОНИРОВАНИЯ LIGHTBOX (МАСШТАБИРОВАНИЕ И ПЕРЕНОС) */
+        let zoomScale = 1;
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        let translateX = 0, translateY = 0;
+
         window.openLightbox = function() {
             const currentImgSrc = currentProjectImages[currentThumb];
             const lightboxModal = document.getElementById('lightboxModal');
             const lightboxImg = document.getElementById('lightboxImg');
             
+            // Сброс параметров трансформации при открытии
+            zoomScale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateLightboxTransform();
+
             lightboxImg.src = currentImgSrc;
             lightboxModal.classList.add('active');
             
-            // Если картинки физически еще нет, генерируем SVG заглушку на весь экран
             lightboxImg.onerror = function() {
                 lightboxImg.src = `data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%230f172a%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2364748b%22 font-family=%22sans-serif%22 font-size=%2220%22>Чертеж / Схема на заполнении (Фото ${currentThumb + 1})</text></svg>`;
             };
@@ -714,36 +725,56 @@
 
         window.closeLightbox = function() {
             document.getElementById('lightboxModal').classList.remove('active');
-            // Если основная модалка все еще открыта, сохраняем блокировку прокрутки
             if (!document.getElementById('projectModal').classList.contains('active')) {
                 document.body.style.overflow = '';
             }
         };
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProjects();
+        // Функция применения трансформаций к картинке
+        function updateLightboxTransform() {
+            const lightboxImg = document.getElementById('lightboxImg');
+            lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${zoomScale})`;
+        }
 
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    renderProjects(this.getAttribute('data-filter'));
-                });
-            });
+        // 1. Управление приближением через скролл мыши (wheel)
+        document.getElementById('lightboxModal').addEventListener('wheel', function(e) {
+            e.preventDefault(); // Запрещаем стандартный скролл страницы
+            
+            const zoomSpeed = 0.1;
+            if (e.deltaY < 0) {
+                // Скролл вверх - приближение (макс в 5 раз)
+                zoomScale = Math.min(zoomScale + zoomSpeed, 5);
+            } else {
+                // Скролл вниз - отдаление (мин в 0.5 раз)
+                zoomScale = Math.max(zoomScale - zoomSpeed, 0.5);
+            }
+            updateLightboxTransform();
+        }, { passive: false });
+
+        // 2. Начало перетаскивания (mousedown)
+        const lightboxImg = document.getElementById('lightboxImg');
+        
+        lightboxImg.addEventListener('mousedown', function(e) {
+            e.preventDefault(); // Запрещаем стандартное выделение/перенос картинки браузером
+            isDragging = true;
+            lightboxImg.style.transition = 'none'; // Убираем плавность анимации во время таскания для плавности FPS
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
         });
 
-        document.getElementById('projectModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+        // 3. Процесс движения мыши (mousemove)
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            updateLightboxTransform();
         });
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if(document.getElementById('lightboxModal').classList.contains('active')) {
-                    closeLightbox();
-                } else {
-                    closeModal();
-                }
+        // 4. Конец перетаскивания (mouseup)
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                lightboxImg.style.transition = 'transform 0.1s ease'; // Возвращаем легкую плавность
             }
         });
     </script>
