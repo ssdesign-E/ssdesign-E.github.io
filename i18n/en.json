@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "services": "Services",
+    "portfolio": "Projects",
+    "experience": "Experience",
+    "skills": "Skills",
+    "certificates": "Certificates",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Electrical <span>power supply</span> design of any complexity",
+    "subtitle": "Engineering documentation for residential, commercial and industrial facilities. Full cycle from specifications to delivery.",
+    "stat_projects": "Projects",
+    "stat_years": "Years of experience",
+    "stat_success": "Successful deliveries",
+    "btn_discuss": "Discuss a project",
+    "btn_portfolio": "All projects",
+    "card_accuracy": "Accuracy",
+    "card_accuracy_sub": "Calculations with < 1% error",
+    "card_deadline": "Deadlines",
+    "card_deadline_sub": "Average turnaround: 14 days"
+  },
+  "services": {
+    "tag": "Services",
+    "title": "How I can help",
+    "subtitle": "Full range of electrical power supply and network design services",
+    "s1_title": "HV & MV Design",
+    "s1_desc": "Development of 6–10 kV power supply schemes, transformer substation and switchgear design.",
+    "s2_title": "Residential Buildings",
+    "s2_desc": "Electrical design for apartment complexes, cottage communities and business-class residential projects.",
+    "s3_title": "Commercial Real Estate",
+    "s3_desc": "Shopping centres, office buildings, warehouses, logistics complexes — full design cycle.",
+    "s4_title": "Industrial Facilities",
+    "s4_desc": "Workshops, production lines, process equipment — power supply and lighting design.",
+    "s5_title": "Renewable Energy",
+    "s5_desc": "Solar power plant design, energy storage systems, grid integration.",
+    "s6_title": "Approval & Expert Review",
+    "s6_desc": "Full project support: utility coordination, expert review, technical conditions."
+  },
+  "featured": {
+    "tag": "Featured",
+    "title": "Best projects",
+    "subtitle": "Three key projects from the portfolio",
+    "btn_all": "View full portfolio"
+  },
+  "experience": {
+    "tag": "Experience",
+    "title": "Career path",
+    "subtitle": "Career in electrical engineering design"
+  },
+  "skills": {
+    "tag": "Expertise",
+    "title": "Skills & Technologies",
+    "subtitle": "Professional tools and areas of expertise",
+    "cat1": "Software",
+    "cat2": "Regulatory standards",
+    "cat3": "Technical skills"
+  },
+  "certificates": {
+    "tag": "Education",
+    "title": "Certificates & Diplomas",
+    "subtitle": "Qualification confirmation and continuous development",
+    "c1_title": "Secondary Technical Education",
+    "c1_desc": "Lyceum No. 5 / Programming / 2005–2006",
+    "c2_title": "Electrical Safety Group IV",
+    "c2_desc": "Up to 10 000 V / Valid / Renewal: 2027",
+    "c3_title": "Designer's Certificate",
+    "c3_desc": "Complexity category: II / Field: power supply",
+    "c4_title": "Energy Auditor",
+    "c4_desc": "Advanced qualification certificate / Ministry of Energy TM, 2021"
+  },
+  "contact": {
+    "tag": "Contact",
+    "title": "Let's work together",
+    "subtitle": "Ready to discuss your project and answer any questions",
+    "heading": "Get in touch",
+    "intro": "Fill out the form or use the contact details below. I usually respond within one business day.",
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location",
+    "location_val": "Ashgabat, working worldwide",
+    "schedule": "Working hours",
+    "schedule_val": "Mon–Fri: 9:00 AM — 6:00 PM",
+    "f_name": "Your name",
+    "f_name_ph": "John Smith",
+    "f_email_ph": "example@mail.com",
+    "f_type": "Object type",
+    "f_type_ph": "Select type",
+    "f_t1": "Residential",
+    "f_t2": "Commercial",
+    "f_t3": "Industrial",
+    "f_t4": "Reconstruction",
+    "f_t5": "Other",
+    "f_msg": "Project description",
+    "f_msg_ph": "Briefly describe the task, area, deadlines...",
+    "f_submit": "Send request"
+  },
+  "modal": {
+    "sent_title": "Request sent!",
+    "sent_desc": "Thank you for reaching out. I will contact you shortly to discuss the project details.",
+    "close": "Close"
+  },
+  "footer": {
+    "copy": "© 2026 SS Engineering. All rights reserved. Electrical power supply design."
+  },
+  "portfolio": {
+    "breadcrumb_home": "Back to main",
+    "header_title": "Completed projects",
+    "header_desc": "Electrical engineering design of external and internal power networks, lighting and automation systems for public and commercial facilities.",
+    "filter_label": "Filter:",
+    "f_all": "All projects",
+    "f_commercial": "Commercial & Retail",
+    "f_infrastructure": "Infrastructure & Roads",
+    "f_industrial": "Industrial & Logistics",
+    "f_hydro": "Hydraulic & Water Supply",
+    "f_energy": "Power 10 kV",
+    "no_results": "No projects published in this category yet.",
+    "modal_zoom": "Zoom drawing",
+    "modal_desc_title": "Project description",
+    "modal_tasks_title": "Engineering tasks",
+    "modal_sections_label": "Project sections",
+    "modal_cta": "Discuss a similar project",
+    "modal_location_label": "Location",
+    "modal_year_label": "Year",
+    "status_done": "Completed",
+    "status_progress": "In progress",
+    "thumb_alt": "Thumbnail",
+    "zoom_hint": "Zoom drawing"
+  }
+}

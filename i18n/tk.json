@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "services": "Hyzmatlar",
+    "portfolio": "Taslamalar",
+    "experience": "Tejribe",
+    "skills": "Başarnyklar",
+    "certificates": "Şahadatnamalar",
+    "contact": "Habarlaşmak"
+  },
+  "hero": {
+    "title": "Islendik çylşyrymly <span>elektrik üpjünçiligini</span> taslamalaşdyrmak",
+    "subtitle": "Ýaşaýyş, täjirçilik we senagat desgalary üçin taslama resminamalaryny düzmek. Tehniki şertlerden tabşyrmaga çenli doly aýlaw.",
+    "stat_projects": "Taslama",
+    "stat_years": "Ýyl tejribe",
+    "stat_success": "Üstünlikli tabşyrma",
+    "btn_discuss": "Taslamany ara alyp maslahatlaşmak",
+    "btn_portfolio": "Ähli taslamalar",
+    "card_accuracy": "Takyklyk",
+    "card_accuracy_sub": "< 1% ýalňyşlyk bilen hasaplamalar",
+    "card_deadline": "Möhletler",
+    "card_deadline_sub": "Ortaça ýerine ýetiriş wagty: 14 gün"
+  },
+  "services": {
+    "tag": "Hyzmatlar",
+    "title": "Size nähili kömek edip bilerin",
+    "subtitle": "Elektrik üpjünçiligini we elektrik toruny taslamalaşdyrmak boýunça doly hyzmatlar",
+    "s1_title": "Ýokary we orta gerimleri taslamalaşdyrmak",
+    "s1_desc": "6–10 kW elektrik üpjünçiligi shemalaryny işläp düzmek, transformator podstansiýalaryny we paýlaýjy gurluşlary taslamalaşdyrmak.",
+    "s2_title": "Ýaşaýyş jaýlary",
+    "s2_desc": "Köp gatly jaý toplumlary, kottej obalary we işewür synp jaý taslamalary üçin elektrik üpjünçiligini taslamalaşdyrmak.",
+    "s3_title": "Täjirçilik desgalary",
+    "s3_desc": "Söwda merkezleri, ofis binalary, ammarhana we logistika toplumlary — doly taslama aýlawy.",
+    "s4_title": "Senagat desgalary",
+    "s4_desc": "Zawodlar, önümçilik liniýalary, tehnologik enjamlar — güýç we yşyklandyryş elektrik üpjünçiligini taslamalaşdyrmak.",
+    "s5_title": "Gaýtadan dikeldilýän energetika",
+    "s5_desc": "Gün elektrik stansiýalaryny, energiýa toplaýjy ulgamlaryny taslamalaşdyrmak, tora birleşdirmek.",
+    "s6_title": "Ylalaşmak we ekspertiza",
+    "s6_desc": "Taslamanyň doly goldawy: toruň guramalarynda ylalaşmak, ekspertiza, tehniki şertleri almak."
+  },
+  "featured": {
+    "tag": "Saýlanan",
+    "title": "Iň gowy taslamalar",
+    "subtitle": "Portfolio-dan üç esasy desga",
+    "btn_all": "Ähli portfolio görmek"
+  },
+  "experience": {
+    "tag": "Tejribe",
+    "title": "Hünär ýoly",
+    "subtitle": "Elektrotehniki taslamalaşdyrma pudagynda karýera"
+  },
+  "skills": {
+    "tag": "Ussatlyk",
+    "title": "Başarnyklar we tehnologiýalar",
+    "subtitle": "Hünär gurallary we ussatlyk ugurlary",
+    "cat1": "Programma üpjünçiligi",
+    "cat2": "Kadalaşdyryjy binýat",
+    "cat3": "Tehniki başarnyklar"
+  },
+  "certificates": {
+    "tag": "Bilim",
+    "title": "Şahadatnamalar we diplomlar",
+    "subtitle": "Hünär derejesini tassyklamak we yzygiderli ösüş",
+    "c1_title": "Orta tehniki bilim",
+    "c1_desc": "5-nji Lisei / Programmirleme / 2005–2006",
+    "c2_title": "IV derejeli elektrik howpsuzlygy",
+    "c2_desc": "10 000 W çenli / Hereket edýär / Täzelenmegi: 2027",
+    "c3_title": "Taslamalaşdyryjynyň şahadatnamasy",
+    "c3_desc": "Çylşyrymlylyk derejesi: II / Pudak: elektrik üpjünçiligi",
+    "c4_title": "Energiýa auditory",
+    "c4_desc": "Hünär derejäni ýokarlandyrmak şahadatnamasy / TM Energetika ministrligi, 2021"
+  },
+  "contact": {
+    "tag": "Habarlaşmak",
+    "title": "Bilelikde işleliň",
+    "subtitle": "Taslamaňyzy ara alyp maslahatlaşmaga we soraglara jogap bermäge taýyn",
+    "heading": "Habarlaşyň",
+    "intro": "Formy dolduryň ýa-da habarlaşmak maglumatlaryny ulanyň. Adatça iş gününiň dowamynda jogap berýärin.",
+    "phone": "Telefon",
+    "email": "E-poçta",
+    "location": "Ýerleşýän ýeri",
+    "location_val": "Aşgabat, bütin dünýäde işleýär",
+    "schedule": "Iş sagatlary",
+    "schedule_val": "Duş–Anna: 9:00 — 18:00",
+    "f_name": "Adyňyz",
+    "f_name_ph": "Oraz Oraz",
+    "f_email_ph": "mysal@mail.com",
+    "f_type": "Desga görnüşi",
+    "f_type_ph": "Görnüşi saýlaň",
+    "f_t1": "Ýaşaýyş desgasy",
+    "f_t2": "Täjirçilik desgasy",
+    "f_t3": "Senagat desgasy",
+    "f_t4": "Täzeden gurmak",
+    "f_t5": "Beýleki",
+    "f_msg": "Taslama beýany",
+    "f_msg_ph": "Wezipäni, meýdany, möhletleri gysgaça beýan ediň...",
+    "f_submit": "Arza ibermek"
+  },
+  "modal": {
+    "sent_title": "Arza iberildi!",
+    "sent_desc": "Ýüz tutunyňyz üçin sag boluň. Taslama jikme-jikliklerini ara alyp maslahatlaşmak üçin size ýakyn wagtda habarlaşaryn.",
+    "close": "Ýapmak"
+  },
+  "footer": {
+    "copy": "© 2026 SS Injiniringi. Ähli hukuklar goralýar. Elektrik üpjünçiligini taslamalaşdyrmak."
+  },
+  "portfolio": {
+    "breadcrumb_home": "Baş sahypa",
+    "header_title": "Ýerine ýetirilen taslamalar",
+    "header_desc": "Döwlet we täjirçilik desgalarynda daşky we içki elektrik torlarynyň, yşyklandyryş we awtomatlaşdyryş ulgamlarynyň injenerçilik taslamasyny düzmek.",
+    "filter_label": "Süzgüç:",
+    "f_all": "Ähli desgalar",
+    "f_commercial": "Täjirçilik we TRJ",
+    "f_infrastructure": "Infrastruktura we Ýollar",
+    "f_industrial": "Senagat we Logistika",
+    "f_hydro": "Gidrotehnika we Suw üpjünçiligi",
+    "f_energy": "Energetika 10 kW",
+    "no_results": "Bu kategoriýada taslamalar heniz çap edilmedi.",
+    "modal_zoom": "Çizmegi ulaltmak",
+    "modal_desc_title": "Taslama beýany",
+    "modal_tasks_title": "Taslamanyň wezipeleri",
+    "modal_sections_label": "Taslama bölümleri",
+    "modal_cta": "Meňzeş taslamany ara alyp maslahatlaşmak",
+    "modal_location_label": "Ýerleşýän ýeri",
+    "modal_year_label": "Ýyl",
+    "status_done": "Tamamlandy",
+    "status_progress": "Dowam edýär",
+    "thumb_alt": "Kiçi surat",
+    "zoom_hint": "Çizmegi ulaltmak"
+  }
+}
