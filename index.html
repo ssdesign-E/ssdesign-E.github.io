@@ -268,6 +268,14 @@
         .modal-content p { color: var(--gray); margin-bottom: 1.5rem; }
         .modal-close { background: var(--light-gray); border: none; padding: 0.75rem 2rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--dark); }
 
+
+        /* ── Lang Switcher ── */
+        .lang-switcher { display:flex; align-items:center; gap:4px; background:rgba(0,0,0,0.06); border-radius:50px; padding:4px; }
+        .lang-btn { background:none; border:none; font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:var(--gray); padding:5px 11px; border-radius:50px; cursor:pointer; transition:all 0.2s; letter-spacing:0.5px; }
+        .lang-btn:hover { color:var(--primary); background:rgba(245,158,11,0.12); }
+        .lang-btn.active { background:var(--accent); color:var(--white); }
+        .nav-right { display:flex; align-items:center; gap:1.5rem; }
+
         /* Responsive */
         @media (max-width: 968px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
@@ -303,16 +311,23 @@
         <div class="nav-container">
             <a href="index.html" class="logo">Sолодянкин<span>Sергей</span></a>
             <ul class="nav-links">
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#featured">Проекты</a></li>
-                <li><a href="#experience">Опыт</a></li>
-                <li><a href="#skills">Навыки</a></li>
-                <li><a href="#certificates">Сертификаты</a></li>
-                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#services" data-i18n="nav.services">Услуги</a></li>
+                <li><a href="#featured" data-i18n="nav.portfolio">Проекты</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Опыт</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Навыки</a></li>
+                <li><a href="#certificates" data-i18n="nav.certificates">Сертификаты</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Контакты</a></li>
             </ul>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Открыть меню">
-                <i data-lucide="menu" style="width:24px;height:24px;"></i>
-            </button>
+            <div class="nav-right">
+                <div class="lang-switcher" role="group" aria-label="Language / Язык / Dil">
+                    <button class="lang-btn" data-lang="ru" onclick="I18n.setLang('ru')">RU</button>
+                    <button class="lang-btn" data-lang="en" onclick="I18n.setLang('en')">EN</button>
+                    <button class="lang-btn" data-lang="tk" onclick="I18n.setLang('tk')">TK</button>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Открыть меню">
+                    <i data-lucide="menu" style="width:24px;height:24px;"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -386,9 +401,9 @@
         <section class="services" id="services">
             <div class="container">
                 <div class="section-header fade-in">
-                    <span class="section-tag">Услуги</span>
-                    <h2 class="section-title">Чем я могу помочь</h2>
-                    <p class="section-subtitle">Полный спектр услуг по проектированию электроснабжения и электрических сетей</p>
+                    <span class="section-tag" data-i18n="services.tag">Услуги</span>
+                    <h2 class="section-title" data-i18n="services.title">Чем я могу помочь</h2>
+                    <p class="section-subtitle" data-i18n="services.subtitle">Полный спектр услуг по проектированию электроснабжения и электрических сетей</p>
                 </div>
 
                 <div class="services-grid">
@@ -436,13 +451,13 @@
             <div class="container">
                 <div class="featured-header fade-in">
                     <div class="section-header">
-                        <span class="section-tag">Избранное</span>
-                        <h2 class="section-title">Лучшие проекты</h2>
-                        <p class="section-subtitle">Три ключевых объекта из портфолио</p>
+                        <span class="section-tag" data-i18n="featured.tag">Избранное</span>
+                        <h2 class="section-title" data-i18n="featured.title">Лучшие проекты</h2>
+                        <p class="section-subtitle" data-i18n="featured.subtitle">Три ключевых объекта из портфолио</p>
                     </div>
                     <a href="portfolio.html" class="btn btn-dark view-all-btn">
                         <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
-                        Смотреть все портфолио
+                        <span data-i18n="featured.btn_all">Смотреть все портфолио</span>
                     </a>
                 </div>
 
@@ -516,9 +531,9 @@
         <section class="experience" id="experience">
             <div class="container">
                 <div class="section-header fade-in">
-                    <span class="section-tag" style="background:rgba(245,158,11,0.2);">Опыт</span>
-                    <h2 class="section-title">Профессиональный путь</h2>
-                    <p class="section-subtitle">Карьера в сфере электротехнического проектирования</p>
+                    <span class="section-tag" style="background:rgba(245,158,11,0.2);" data-i18n="experience.tag">Опыт</span>
+                    <h2 class="section-title" data-i18n="experience.title">Профессиональный путь</h2>
+                    <p class="section-subtitle" data-i18n="experience.subtitle">Карьера в сфере электротехнического проектирования</p>
                 </div>
 
                 <div class="timeline">
@@ -645,9 +660,9 @@
         <section id="skills">
             <div class="container">
                 <div class="section-header fade-in">
-                    <span class="section-tag">Компетенции</span>
-                    <h2 class="section-title">Навыки и технологии</h2>
-                    <p class="section-subtitle">Профессиональные инструменты и области экспертизы</p>
+                    <span class="section-tag" data-i18n="skills.tag">Компетенции</span>
+                    <h2 class="section-title" data-i18n="skills.title">Навыки и технологии</h2>
+                    <p class="section-subtitle" data-i18n="skills.subtitle">Профессиональные инструменты и области экспертизы</p>
                 </div>
 
                 <div class="skills-grid">
@@ -682,9 +697,9 @@
         <section class="certificates" id="certificates">
             <div class="container">
                 <div class="section-header fade-in">
-                    <span class="section-tag">Образование</span>
-                    <h2 class="section-title">Сертификаты и дипломы</h2>
-                    <p class="section-subtitle">Подтверждение квалификации и постоянное развитие</p>
+                    <span class="section-tag" data-i18n="certificates.tag">Образование</span>
+                    <h2 class="section-title" data-i18n="certificates.title">Сертификаты и дипломы</h2>
+                    <p class="section-subtitle" data-i18n="certificates.subtitle">Подтверждение квалификации и постоянное развитие</p>
                 </div>
 
                 <div class="cert-grid">
@@ -719,20 +734,20 @@
         <section id="contact">
             <div class="container">
                 <div class="section-header fade-in">
-                    <span class="section-tag">Контакты</span>
-                    <h2 class="section-title">Давайте работать вместе</h2>
-                    <p class="section-subtitle">Готов обсудить ваш проект и ответить на вопросы</p>
+                    <span class="section-tag" data-i18n="contact.tag">Контакты</span>
+                    <h2 class="section-title" data-i18n="contact.title">Давайте работать вместе</h2>
+                    <p class="section-subtitle" data-i18n="contact.subtitle">Готов обсудить ваш проект и ответить на вопросы</p>
                 </div>
 
                 <div class="contact-container">
                     <div class="contact-info fade-in">
-                        <h2>Свяжитесь со мной</h2>
-                        <p>Заполните форму или используйте контактные данные. Обычно отвечаю в течение рабочего дня.</p>
+                        <h2 data-i18n="contact.heading">Свяжитесь со мной</h2>
+                        <p data-i18n="contact.intro">Заполните форму или используйте контактные данные. Обычно отвечаю в течение рабочего дня.</p>
 
                         <div class="contact-item">
                             <div class="contact-icon"><i data-lucide="phone" style="width:22px;height:22px;"></i></div>
                             <div>
-                                <h4>Телефон</h4>
+                                <h4 data-i18n="contact.phone">Телефон</h4>
                                 <p><a href="tel:+99361247257">+993 (61) 24-72-57</a></p>
                             </div>
                         </div>
@@ -748,24 +763,24 @@
                         <div class="contact-item">
                             <div class="contact-icon"><i data-lucide="map-pin" style="width:22px;height:22px;"></i></div>
                             <div>
-                                <h4>Локация</h4>
-                                <p>Ашхабад, работа по всему миру</p>
+                                <h4 data-i18n="contact.location">Локация</h4>
+                                <p data-i18n="contact.location_val">Ашхабад, работа по всему миру</p>
                             </div>
                         </div>
 
                         <div class="contact-item">
                             <div class="contact-icon"><i data-lucide="clock" style="width:22px;height:22px;"></i></div>
                             <div>
-                                <h4>График работы</h4>
-                                <p>Пн-Пт: 9:00 — 18:00</p>
+                                <h4 data-i18n="contact.schedule">График работы</h4>
+                                <p data-i18n="contact.schedule_val">Пн-Пт: 9:00 — 18:00</p>
                             </div>
                         </div>
                     </div>
 
                     <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
                         <div class="form-group">
-                            <label for="name">Ваше имя</label>
-                            <input type="text" id="name" placeholder="Иван Иванов" required>
+                            <label for="name" data-i18n="contact.f_name">Ваше имя</label>
+                            <input type="text" id="name" data-i18n-placeholder="contact.f_name_ph" placeholder="Иван Иванов" required>
                         </div>
 
                         <div class="form-group">
@@ -774,25 +789,25 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="type">Тип объекта</label>
+                            <label for="type" data-i18n="contact.f_type">Тип объекта</label>
                             <select id="type" required>
-                                <option value="">Выберите тип</option>
-                                <option value="residential">Жилой объект</option>
-                                <option value="commercial">Коммерческий объект</option>
-                                <option value="industrial">Промышленный объект</option>
-                                <option value="reconstruction">Реконструкция</option>
-                                <option value="other">Другое</option>
+                                <option value="" data-i18n-option="contact.f_type_ph">Выберите тип</option>
+                                <option value="residential" data-i18n-option="contact.f_t1">Жилой объект</option>
+                                <option value="commercial" data-i18n-option="contact.f_t2">Коммерческий объект</option>
+                                <option value="industrial" data-i18n-option="contact.f_t3">Промышленный объект</option>
+                                <option value="reconstruction" data-i18n-option="contact.f_t4">Реконструкция</option>
+                                <option value="other" data-i18n-option="contact.f_t5">Другое</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Описание проекта</label>
-                            <textarea id="message" placeholder="Кратко опишите задачу, площадь, сроки..." required></textarea>
+                            <label for="message" data-i18n="contact.f_msg">Описание проекта</label>
+                            <textarea id="message" data-i18n-placeholder="contact.f_msg_ph" placeholder="Кратко опишите задачу, площадь, сроки..." required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
                             <i data-lucide="send" style="width:18px;height:18px;"></i>
-                            Отправить заявку
+                            <span data-i18n="contact.f_submit">Отправить заявку</span>
                         </button>
                     </form>
                 </div>
@@ -812,7 +827,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 SS инжиниринг. Все права защищены. Проектирование электроснабжения.</p>
+                <p data-i18n="footer.copy">© 2026 SS инжиниринг. Все права защищены. Проектирование электроснабжения.</p>
             </div>
         </div>
     </footer>
@@ -827,6 +842,9 @@
         </div>
     </div>
 
+
+    <!-- i18n engine -->
+    <script src="js/i18n.js"></script>
     <script>
         lucide.createIcons();
 
