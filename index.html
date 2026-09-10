@@ -99,6 +99,12 @@
         body { font-family: 'Inter', sans-serif; color: var(--dark); line-height: 1.6; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
+
+        /* Lang Switcher */
+        .lang-switcher{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,0.06);border-radius:50px;padding:4px;}
+        .lang-btn{background:none;border:none;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;color:var(--gray);padding:5px 11px;border-radius:50px;cursor:pointer;transition:all .2s;letter-spacing:.5px;}
+        .lang-btn:hover{color:var(--primary);background:rgba(245,158,11,0.12);}
+        .lang-btn.active{background:var(--accent);color:var(--white);}
         /* Skip Link for Accessibility */
         .skip-link {
             position: absolute;
@@ -268,14 +274,6 @@
         .modal-content p { color: var(--gray); margin-bottom: 1.5rem; }
         .modal-close { background: var(--light-gray); border: none; padding: 0.75rem 2rem; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--dark); }
 
-
-        /* ── Lang Switcher ── */
-        .lang-switcher { display:flex; align-items:center; gap:4px; background:rgba(0,0,0,0.06); border-radius:50px; padding:4px; }
-        .lang-btn { background:none; border:none; font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:600; color:var(--gray); padding:5px 11px; border-radius:50px; cursor:pointer; transition:all 0.2s; letter-spacing:0.5px; }
-        .lang-btn:hover { color:var(--primary); background:rgba(245,158,11,0.12); }
-        .lang-btn.active { background:var(--accent); color:var(--white); }
-        .nav-right { display:flex; align-items:center; gap:1.5rem; }
-
         /* Responsive */
         @media (max-width: 968px) {
             .hero-container { grid-template-columns: 1fr; text-align: center; }
@@ -318,8 +316,8 @@
                 <li><a href="#certificates" data-i18n="nav.certificates">Сертификаты</a></li>
                 <li><a href="#contact" data-i18n="nav.contact">Контакты</a></li>
             </ul>
-            <div class="nav-right">
-                <div class="lang-switcher" role="group" aria-label="Language / Язык / Dil">
+            <div style="display:flex;align-items:center;gap:1rem;">
+                <div class="lang-switcher" role="group" aria-label="Language">
                     <button class="lang-btn" data-lang="ru" onclick="I18n.setLang('ru')">RU</button>
                     <button class="lang-btn" data-lang="en" onclick="I18n.setLang('en')">EN</button>
                     <button class="lang-btn" data-lang="tk" onclick="I18n.setLang('tk')">TK</button>
@@ -336,32 +334,32 @@
         <section class="hero" id="home">
             <div class="hero-container">
                 <div class="hero-content">
-                    <h1>Проектирование <span>электроснабжения</span> любой сложности</h1>
-                    <p class="hero-subtitle">Разработка проектной документации для жилых, коммерческих и промышленных объектов. Полный цикл от ТЗ до сдачи.</p>
+                    <h1 data-i18n-html="hero.title">Проектирование <span>электроснабжения</span> любой сложности</h1>
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">Разработка проектной документации для жилых, коммерческих и промышленных объектов. Полный цикл от ТЗ до сдачи.</p>
                     
                     <div class="hero-stats">
                         <div class="stat-item">
                             <span class="stat-number">150+</span>
-                            <span class="stat-label">Проектов</span>
+                            <span class="stat-label" data-i18n="hero.stat_projects">Проектов</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">12</span>
-                            <span class="stat-label">Лет опыта</span>
+                            <span class="stat-label" data-i18n="hero.stat_years">Лет опыта</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">98%</span>
-                            <span class="stat-label">Успешных сдач</span>
+                            <span class="stat-label" data-i18n="hero.stat_success">Успешных сдач</span>
                         </div>
                     </div>
 
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-primary">
                             <i data-lucide="mail" style="width:18px;height:18px;"></i>
-                            Обсудить проект
+                            <span data-i18n="hero.btn_discuss">Обсудить проект</span>
                         </a>
                         <a href="portfolio.html" class="btn btn-outline">
                             <i data-lucide="folder-open" style="width:18px;height:18px;"></i>
-                            Все проекты
+                            <span data-i18n="hero.btn_portfolio">Все проекты</span>
                         </a>
                     </div>
                 </div>
@@ -385,13 +383,13 @@
                     </div>
                     
                     <div class="floating-card floating-card-1">
-                        <h4>Точность</h4>
-                        <p>Расчеты с погрешностью < 1%</p>
+                        <h4 data-i18n="hero.card_accuracy">Точность</h4>
+                        <p data-i18n="hero.card_accuracy_sub">Расчеты с погрешностью &lt; 1%</p>
                     </div>
                     
                     <div class="floating-card floating-card-2">
-                        <h4>Сроки</h4>
-                        <p>Среднее время: 14 дней</p>
+                        <h4 data-i18n="hero.card_deadline">Сроки</h4>
+                        <p data-i18n="hero.card_deadline_sub">Среднее время: 14 дней</p>
                     </div>
                 </div>
             </div>
@@ -409,38 +407,38 @@
                 <div class="services-grid">
                     <article class="service-card fade-in">
                         <div class="service-icon"><i data-lucide="zap" style="width:28px;height:28px;"></i></div>
-                        <h3>Проектирование ВН и СН</h3>
-                        <p>Разработка схем электроснабжения напряжением 6-10 кВ, проектирование трансформаторных подстанций, распределительных устройств.</p>
+                        <h3 data-i18n="services.s1_title">Проектирование ВН и СН</h3>
+                        <p data-i18n="services.s1_desc">Разработка схем электроснабжения напряжением 6-10 кВ, проектирование трансформаторных подстанций, распределительных устройств.</p>
                     </article>
 
                     <article class="service-card fade-in">
                         <div class="service-icon"><i data-lucide="home" style="width:28px;height:28px;"></i></div>
-                        <h3>Жилые объекты</h3>
-                        <p>Проектирование электроснабжения многоквартирных домов, коттеджных поселков, ЖК бизнес и комфорт-класса.</p>
+                        <h3 data-i18n="services.s2_title">Жилые объекты</h3>
+                        <p data-i18n="services.s2_desc">Проектирование электроснабжения многоквартирных домов, коттеджных поселков, ЖК бизнес и комфорт-класса.</p>
                     </article>
 
                     <article class="service-card fade-in">
                         <div class="service-icon"><i data-lucide="building-2" style="width:28px;height:28px;"></i></div>
-                        <h3>Коммерческая недвижимость</h3>
-                        <p>Торговые центры, офисные здания, склады, логистические комплексы — полный цикл проектирования.</p>
+                        <h3 data-i18n="services.s3_title">Коммерческая недвижимость</h3>
+                        <p data-i18n="services.s3_desc">Торговые центры, офисные здания, склады, логистические комплексы — полный цикл проектирования.</p>
                     </article>
 
                     <article class="service-card fade-in">
                         <div class="service-icon"><i data-lucide="factory" style="width:28px;height:28px;"></i></div>
-                        <h3>Промышленные объекты</h3>
-                        <p>Цеха, производственные линии, технологическое оборудование — проектирование силового и осветительного электроснабжения.</p>
+                        <h3 data-i18n="services.s4_title">Промышленные объекты</h3>
+                        <p data-i18n="services.s4_desc">Цеха, производственные линии, технологическое оборудование — проектирование силового и осветительного электроснабжения.</p>
                     </article>
 
                     <article class="service-card fade-in">
                         <div class="service-icon"><i data-lucide="sun" style="width:28px;height:28px;"></i></div>
-                        <h3>Альтернативная энергетика</h3>
-                        <p>Проектирование солнечных электростанций, систем накопления энергии, интеграция с сетью.</p>
+                        <h3 data-i18n="services.s5_title">Альтернативная энергетика</h3>
+                        <p data-i18n="services.s5_desc">Проектирование солнечных электростанций, систем накопления энергии, интеграция с сетью.</p>
                     </article>
 
                     <article class="service-card fade-in">
                         <div class="service-icon"><i data-lucide="file-check" style="width:28px;height:28px;"></i></div>
-                        <h3>Согласование и экспертиза</h3>
-                        <p>Полное сопровождение проекта: согласование в сетевых организациях, экспертиза, получение ТУ.</p>
+                        <h3 data-i18n="services.s6_title">Согласование и экспертиза</h3>
+                        <p data-i18n="services.s6_desc">Полное сопровождение проекта: согласование в сетевых организациях, экспертиза, получение ТУ.</p>
                     </article>
                 </div>
             </div>
@@ -667,7 +665,7 @@
 
                 <div class="skills-grid">
                     <div class="skill-category fade-in">
-                        <h3><i data-lucide="monitor" style="width:20px;height:20px;color:var(--accent);"></i> Программное обеспечение</h3>
+                        <h3><i data-lucide="monitor" style="width:20px;height:20px;color:var(--accent);"></i> <span data-i18n="skills.cat1">Программное обеспечение</span></h3>
                         <div class="skill-item"><div class="skill-header"><span>AutoCAD</span><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
                         <div class="skill-item"><div class="skill-header"><span>Revit / BIM</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
                         <div class="skill-item"><div class="skill-header"><span>ETAP / DiaLUX</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85"></div></div></div>
@@ -675,7 +673,7 @@
                     </div>
 
                     <div class="skill-category fade-in">
-                        <h3><i data-lucide="book-open" style="width:20px;height:20px;color:var(--accent);"></i> Нормативная база</h3>
+                        <h3><i data-lucide="book-open" style="width:20px;height:20px;color:var(--accent);"></i> <span data-i18n="skills.cat2">Нормативная база</span></h3>
                         <div class="skill-item"><div class="skill-header"><span>ПУЭ / ПТЭЭП</span><span>98%</span></div><div class="skill-bar"><div class="skill-progress" data-width="98"></div></div></div>
                         <div class="skill-item"><div class="skill-header"><span>СП 256, СП 31, СП 76</span><span>95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
                         <div class="skill-item"><div class="skill-header"><span>ГОСТ Р 50571</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
@@ -683,7 +681,7 @@
                     </div>
 
                     <div class="skill-category fade-in">
-                        <h3><i data-lucide="cpu" style="width:20px;height:20px;color:var(--accent);"></i> Технические навыки</h3>
+                        <h3><i data-lucide="cpu" style="width:20px;height:20px;color:var(--accent);"></i> <span data-i18n="skills.cat3">Технические навыки</span></h3>
                         <div class="skill-item"><div class="skill-header"><span>Расчет КЗ и селективности</span><span>92%</span></div><div class="skill-bar"><div class="skill-progress" data-width="92"></div></div></div>
                         <div class="skill-item"><div class="skill-header"><span>Проектирование АСКУЭ</span><span>85%</span></div><div class="skill-bar"><div class="skill-progress" data-width="85"></div></div></div>
                         <div class="skill-item"><div class="skill-header"><span>Молниезащита и заземление</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
@@ -705,25 +703,25 @@
                 <div class="cert-grid">
                     <article class="cert-card fade-in">
                         <div class="cert-icon"><i data-lucide="graduation-cap" style="width:32px;height:32px;"></i></div>
-                        <h3>Средне-техническое образование</h3>
+                        <h3 data-i18n="certificates.c1_title">Средне-техническое образование</h3>
                         <p>Лицей №5<br>«Программирование»<br>2005 — 2006</p>
                     </article>
 
                     <article class="cert-card fade-in">
                         <div class="cert-icon"><i data-lucide="shield-check" style="width:32px;height:32px;"></i></div>
-                        <h3>Группа допуска IV</h3>
+                        <h3 data-i18n="certificates.c2_title">Группа допуска IV</h3>
                         <p>До 10000 В<br>Действующий<br>Пересдача: 2027</p>
                     </article>
 
                     <article class="cert-card fade-in">
                         <div class="cert-icon"><i data-lucide="award" style="width:32px;height:32px;"></i></div>
-                        <h3>Аттестат проектировщика</h3>
+                        <h3 data-i18n="certificates.c3_title">Аттестат проектировщика</h3>
                         <p>Категория сложности: II<br>Область: электроснабжение</p>
                     </article>
 
                     <article class="cert-card fade-in">
                         <div class="cert-icon"><i data-lucide="leaf" style="width:32px;height:32px;"></i></div>
-                        <h3>Энергоаудитор</h3>
+                        <h3 data-i18n="certificates.c4_title">Энергоаудитор</h3>
                         <p>Свидетельство о повышении квалификации<br>Минэнерго ТМ, 2021</p>
                     </article>
                 </div>
@@ -780,7 +778,7 @@
                     <form class="contact-form fade-in" onsubmit="handleSubmit(event)">
                         <div class="form-group">
                             <label for="name" data-i18n="contact.f_name">Ваше имя</label>
-                            <input type="text" id="name" data-i18n-placeholder="contact.f_name_ph" placeholder="Иван Иванов" required>
+                            <input type="text" id="name" placeholder="Иван Иванов" data-i18n-placeholder="contact.f_name_ph" required>
                         </div>
 
                         <div class="form-group">
@@ -802,7 +800,7 @@
 
                         <div class="form-group">
                             <label for="message" data-i18n="contact.f_msg">Описание проекта</label>
-                            <textarea id="message" data-i18n-placeholder="contact.f_msg_ph" placeholder="Кратко опишите задачу, площадь, сроки..." required></textarea>
+                            <textarea id="message" placeholder="Кратко опишите задачу, площадь, сроки..." data-i18n-placeholder="contact.f_msg_ph" required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
@@ -836,15 +834,12 @@
     <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
             <i data-lucide="check-circle" style="width:48px;height:48px;color:var(--success);margin-bottom:1rem;"></i>
-            <h3 id="modal-title">Заявка отправлена!</h3>
-            <p>Спасибо за обращение. Я свяжусь с вами в ближайшее время для обсуждения деталей проекта.</p>
-            <button class="modal-close" onclick="closeModal()">Закрыть</button>
+            <h3 id="modal-title" data-i18n="modal.sent_title">Заявка отправлена!</h3>
+            <p data-i18n="modal.sent_desc">Спасибо за обращение. Я свяжусь с вами в ближайшее время для обсуждения деталей проекта.</p>
+            <button class="modal-close" onclick="closeModal()" data-i18n="modal.close">Закрыть</button>
         </div>
     </div>
 
-
-    <!-- i18n engine -->
-    <script src="js/i18n.js"></script>
     <script>
         lucide.createIcons();
 
@@ -906,5 +901,7 @@
             });
         });
     </script>
+    <!-- i18n engine -->
+    <script src="js/i18n.js"></script>
 </body>
 </html>
